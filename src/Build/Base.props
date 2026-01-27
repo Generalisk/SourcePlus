@@ -8,7 +8,7 @@
 	<!--Project Info-->
 	<PropertyGroup>
 		<AssemblyName>$(ProjectName)</AssemblyName>
-		<RootNamespace>SourcePlus.$(ProjectName)</RootNamespace>
+		<RootNamespace>SourcePlus.$(MSBuildProjectName)</RootNamespace>
 		<Company>Source+ Contributors</Company>
 		<Version>0.0.0.0</Version>
 	</PropertyGroup>

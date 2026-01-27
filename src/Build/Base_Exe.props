@@ -1,5 +1,5 @@
 <Project>
-	<Import Project="$(SolutionDir)\Build_Scripts\Base.props" />
+	<Import Project="$(SolutionDir)\Build\Base.props" />
 	
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>

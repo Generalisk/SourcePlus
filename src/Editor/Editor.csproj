@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<Import Project="$(SolutionDir)\Build_Scripts\Base_WinExe.props" />
+	<Import Project="$(SolutionDir)\Build\Base_WinExe.props" />
 
 	<!--Project Info-->
 	<PropertyGroup>
