@@ -10,6 +10,7 @@
 	<PropertyGroup>
 		<AssemblyName>Editor</AssemblyName>
 		<RootNamespace>SourcePlus.Editor</RootNamespace>
+		<ApplicationIcon>$(SolutionDir)\Resources\SourcePlus_Icon.ico</ApplicationIcon>
 	</PropertyGroup>
 
 	<!--Output Paths-->
