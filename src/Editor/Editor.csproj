@@ -13,4 +13,11 @@
 		<PackageReference Include="Raylib-cs" Version="7.0.2" />
 		<PackageReference Include="rlImGui-cs" Version="3.2.0" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="$(SolutionDir)\Resources\SourcePlus_Icon.png">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>Content\ApplicationIcon.png</Link>
+		</None>
+	</ItemGroup>
 </Project>

@@ -3,7 +3,12 @@ using rlImGui_cs;
 
 using static Raylib_cs.Raylib;
 
+SetConfigFlags(ConfigFlags.ResizableWindow);
+
 InitWindow(1280, 720, "Source+");
+
+var icon = LoadImage("Content/ApplicationIcon.png");
+SetWindowIcon(icon);
 
 rlImGui.Setup(true, true);
 
@@ -18,3 +23,5 @@ while (!WindowShouldClose())
 rlImGui.Shutdown();
 
 CloseWindow();
+
+UnloadImage(icon);
