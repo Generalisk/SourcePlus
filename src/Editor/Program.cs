@@ -1,5 +1,6 @@
 ﻿using Raylib_cs;
 using rlImGui_cs;
+using SourcePlus.Editor;
 
 using static Raylib_cs.Raylib;
 
@@ -16,6 +17,11 @@ while (!WindowShouldClose())
 {
     BeginDrawing();
     ClearBackground(Color.Black);
+
+    rlImGui.Begin();
+    Menu.Draw();
+    rlImGui.End();
+
     DrawFPS(10, 10);
     EndDrawing();
 }
