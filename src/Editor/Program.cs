@@ -1,2 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using static Raylib_cs.Raylib;
+
+InitWindow(1280, 720, "Source+");
+
+while (!WindowShouldClose())
+{
+    BeginDrawing();
+    EndDrawing();
+}
+
+CloseWindow();

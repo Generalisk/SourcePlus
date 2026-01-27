@@ -6,4 +6,9 @@
 		<ApplicationIcon>$(SolutionDir)\Resources\SourcePlus_Icon.ico</ApplicationIcon>
 		<Description>Source+ Editor</Description>
 	</PropertyGroup>
+
+	<!--NuGet Packages-->
+	<ItemGroup>
+		<PackageReference Include="Raylib-cs" Version="7.0.2" />
+	</ItemGroup>
 </Project>
