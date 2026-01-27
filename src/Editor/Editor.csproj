@@ -11,6 +11,9 @@
 		<AssemblyName>Editor</AssemblyName>
 		<RootNamespace>SourcePlus.Editor</RootNamespace>
 		<ApplicationIcon>$(SolutionDir)\Resources\SourcePlus_Icon.ico</ApplicationIcon>
+		<Description>Source+ Editor</Description>
+		<Company>Source+ Contributors</Company>
+		<Version>0.0.0.0</Version>
 	</PropertyGroup>
 
 	<!--Output Paths-->
