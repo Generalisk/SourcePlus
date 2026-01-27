@@ -1,69 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<OutputType>WinExe</OutputType>
-		<TargetFramework>net10.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
+	<Import Project="$(SolutionDir)\Build_Scripts\Base_WinExe.props" />
 
 	<!--Project Info-->
 	<PropertyGroup>
-		<AssemblyName>Editor</AssemblyName>
-		<RootNamespace>SourcePlus.Editor</RootNamespace>
 		<ApplicationIcon>$(SolutionDir)\Resources\SourcePlus_Icon.ico</ApplicationIcon>
 		<Description>Source+ Editor</Description>
-		<Company>Source+ Contributors</Company>
-		<Version>0.0.0.0</Version>
-	</PropertyGroup>
-
-	<!--Output Paths-->
-	<PropertyGroup>
-		<OutputPath>$(SolutionDir)\..\bin\</OutputPath>
-		<!--<IntermediateOutputPath>$(SolutionDir)\..\obj\$(ProjectName)\</IntermediateOutputPath>-->
-		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
-		<!--<SelfContained>true</SelfContained>-->
-	</PropertyGroup>
-
-	<!--Debug Properties-->
-	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
-		<DebugType>embedded</DebugType>
-		<OutputType>Exe</OutputType>
-	</PropertyGroup>
-
-	<!--Release Properties-->
-	<PropertyGroup Condition="'$(Configuration)'=='Release'">
-		<DebugType>none</DebugType>
-	</PropertyGroup>
-
-	<!--Check if no RuntimeIdentifier has been specified-->
-	<!--This is so that by default, .NET will assume your building for your device-->
-	<Choose>
-		<When Condition="'$(RuntimeIdentifier)'==''">
-			<PropertyGroup>
-				<DefaultRuntime>true</DefaultRuntime>
-			</PropertyGroup>
-		</When>
-		<Otherwise>
-			<PropertyGroup>
-				<DefaultRuntime>false</DefaultRuntime>
-			</PropertyGroup>
-		</Otherwise>
-	</Choose>
-
-	<!--Windows Properties-->
-	<PropertyGroup Condition="$(RuntimeIdentifier.StartsWith('win'))Or($(DefaultRuntime)And$([MSBuild]::IsOSPlatform('Windows')))">
-		<DefineConstants>$(DefineConstants);PLATFORM_WINDOWS</DefineConstants>
-	</PropertyGroup>
-
-	<!--MacOS/OSX Properties-->
-	<!--This platform is not supported by Source+-->
-	<!--<PropertyGroup Condition="$(RuntimeIdentifier.StartsWith('osx'))Or($(DefaultRuntime)And$([MSBuild]::IsOSPlatform('OSX')))">
-		<DefineConstants>$(DefineConstants);PLATFORM_OSX</DefineConstants>
-	</PropertyGroup>-->
-
-	<!--Linux Properties-->
-	<PropertyGroup Condition="$(RuntimeIdentifier.StartsWith('linux'))Or($(DefaultRuntime)And$([MSBuild]::IsOSPlatform('Linux')))">
-		<DefineConstants>$(DefineConstants);PLATFORM_LINUX</DefineConstants>
 	</PropertyGroup>
 </Project>

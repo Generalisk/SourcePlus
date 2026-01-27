@@ -1,0 +1,12 @@
+<Project>
+	<Import Project="$(SolutionDir)\Build_Scripts\Base.props" />
+	
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+	</PropertyGroup>
+	
+	<!--Debug Properties-->
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<OutputType>Exe</OutputType>
+	</PropertyGroup>
+</Project>

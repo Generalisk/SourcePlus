@@ -1,0 +1,7 @@
+<Project>
+	<Import Project="$(SolutionDir)\Build_Scripts\Base.props" />
+	
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+	</PropertyGroup>
+</Project>
