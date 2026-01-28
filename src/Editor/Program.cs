@@ -5,6 +5,9 @@ using SourcePlus.Editor;
 using static ImGuiNET.ImGui;
 using static Raylib_cs.Raylib;
 
+// Temporary path - will add a way to properly set project paths later
+ProjectPath = "TestProject";
+
 Menu.Init();
 
 SetConfigFlags(ConfigFlags.ResizableWindow);
