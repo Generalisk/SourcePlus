@@ -18,8 +18,13 @@ rlImGui.Setup(true, true);
 
 while (!WindowShouldClose())
 {
-    foreach (var window in Windows)
-        window.Update();
+    for (int i = 0; i < Windows.Count; i++)
+    {
+        Windows[i].Update(out bool closed);
+
+        if (closed)
+            i--;
+    }
 
     BeginDrawing();
     ClearBackground(Color.Black);
@@ -31,7 +36,7 @@ while (!WindowShouldClose())
     foreach (var window in Windows)
     {
         SetNextWindowSizeConstraints(window.MinSize, window.MaxSize);
-        if (Begin(window.Name, window.Flags))
+        if (Begin(window.Name, ref window.open, window.Flags))
             window.Draw();
         End();
     }

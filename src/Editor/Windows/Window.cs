@@ -13,11 +13,23 @@ internal abstract class Window
     public virtual Vector2 MaxSize { get; set; } =
         new Vector2(ushort.MaxValue, ushort.MaxValue);
 
+    public bool open = true;
+
     public Window() => Global.Windows.Add(this);
 
     public virtual void Dispose() => Global.Windows.Remove(this);
 
-    public virtual void Update() { }
+    public virtual void Update(out bool closed)
+    {
+        closed = false;
+
+        if (!open)
+        {
+            Dispose();
+            closed = true;
+            return;
+        }
+    }
     
     public abstract void Draw();
 }
