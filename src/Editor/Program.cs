@@ -33,6 +33,8 @@ while (!WindowShouldClose())
 
     Menu.Draw();
 
+    DockSpaceOverViewport();
+
     foreach (var window in Windows)
     {
         SetNextWindowSizeConstraints(window.MinSize, window.MaxSize);
