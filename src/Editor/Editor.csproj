@@ -21,9 +21,4 @@
 			<Link>Content\ApplicationIcon.png</Link>
 		</None>
 	</ItemGroup>
-
-	<!--Include Debug Script-->
-	<ItemGroup>
-		<Compile Include="$(SolutionDir)\Common\Debug.cs" />
-	</ItemGroup>
 </Project>

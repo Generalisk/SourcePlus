@@ -62,4 +62,11 @@
 	<PropertyGroup Condition="$(RuntimeIdentifier.StartsWith('linux'))Or($(DefaultRuntime)And$([MSBuild]::IsOSPlatform('Linux')))">
 		<DefineConstants>$(DefineConstants);PLATFORM_LINUX</DefineConstants>
 	</PropertyGroup>
+	
+	<!--Include Common Scripts-->
+	<ItemGroup>
+		<Compile Include="$(SolutionDir)\Common\**">
+			<Link>Common\%(Filename)%(Extension)</Link>
+		</Compile>
+	</ItemGroup>
 </Project>
