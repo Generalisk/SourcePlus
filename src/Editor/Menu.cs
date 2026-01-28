@@ -1,18 +1,41 @@
-﻿using static ImGuiNET.ImGui;
+﻿using SourcePlus.Editor.Windows;
+using System.Reflection;
+
+using static ImGuiNET.ImGui;
 
 namespace SourcePlus.Editor;
 
 internal static class Menu
 {
+    private static KeyValuePair<string, Type>[] windows = { };
+
+    public static void Init()
+    {
+        var assembly = Assembly.GetExecutingAssembly();
+
+        var types = assembly.GetTypes().Where(x => x.IsClass && !x.IsAbstract && x.IsSubclassOf(typeof(Window)));
+
+        var windows = new List<KeyValuePair<string, Type>>();
+
+        foreach (var type in types)
+        {
+            var window = (Window)Activator.CreateInstance(type);
+            windows.Add(new KeyValuePair<string, Type>(window.Name, type));
+            window.Dispose();
+        }
+
+        Menu.windows = windows.ToArray();
+    }
+
     public static void Draw()
     {
         if (BeginMainMenuBar())
         {
-            // Placeholder - for testing purposes
-            if (BeginMenu("Example"))
+            if (BeginMenu("Window"))
             {
-                if (MenuItem("Test"))
-                    Console.WriteLine("Test Successful!");
+                foreach (var window in windows)
+                    if (MenuItem(window.Key))
+                        Activator.CreateInstance(window.Value);
 
                 EndMenu();
             }
