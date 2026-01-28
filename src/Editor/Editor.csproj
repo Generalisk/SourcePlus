@@ -14,10 +14,16 @@
 		<PackageReference Include="rlImGui-cs" Version="3.2.0" />
 	</ItemGroup>
 
+	<!--Copy Application Icon to Build-->
 	<ItemGroup>
 		<None Include="$(SolutionDir)\Resources\SourcePlus_Icon.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<Link>Content\ApplicationIcon.png</Link>
 		</None>
+	</ItemGroup>
+
+	<!--Include Debug Script-->
+	<ItemGroup>
+		<Compile Include="$(SolutionDir)\Common\Debug.cs" />
 	</ItemGroup>
 </Project>
