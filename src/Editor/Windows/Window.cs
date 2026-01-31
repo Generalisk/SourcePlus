@@ -18,12 +18,22 @@ internal abstract class Window
 
     internal bool open = true;
 
-    public Window() => Global.Windows.Add(this);
+    public Window()
+    {
+        Global.Windows.Add(this);
+
+        Init();
+    }
 
     /// <summary>
     /// Closes the window & unloads it from memory
     /// </summary>
-    public virtual void Dispose() => Global.Windows.Remove(this);
+    public void Dispose()
+    {
+        Shutdown();
+
+        Global.Windows.Remove(this);
+    }
 
     internal void Update(out bool closed)
     {
@@ -41,6 +51,8 @@ internal abstract class Window
 
     internal void DrawInternal() => Draw();
 
+    protected virtual void Init() { }
+    protected virtual void Shutdown() { }
     protected virtual void Update() { }
     protected abstract void Draw();
 }
