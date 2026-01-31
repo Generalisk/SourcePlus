@@ -5,12 +5,16 @@ using static ImGuiNET.ImGui;
 
 namespace SourcePlus.Editor;
 
+/// <summary>
+/// The handler for the main menu bar
+/// </summary>
 internal static class Menu
 {
     private static KeyValuePair<string, Type>[] windows = { };
 
     public static void Init()
     {
+        // Retrieve window menu buttons
         var assembly = Assembly.GetExecutingAssembly();
 
         var types = assembly.GetTypes().Where(x => x.IsClass && !x.IsAbstract && x.IsSubclassOf(typeof(Window)));

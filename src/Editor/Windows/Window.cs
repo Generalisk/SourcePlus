@@ -3,6 +3,9 @@ using System.Numerics;
 
 namespace SourcePlus.Editor.Windows;
 
+/// <summary>
+/// Core window object
+/// </summary>
 internal abstract class Window
 {
     public abstract string Name { get; }
@@ -17,6 +20,9 @@ internal abstract class Window
 
     public Window() => Global.Windows.Add(this);
 
+    /// <summary>
+    /// Closes the window & unloads it from memory
+    /// </summary>
     public virtual void Dispose() => Global.Windows.Remove(this);
 
     public virtual void Update(out bool closed)

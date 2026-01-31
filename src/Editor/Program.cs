@@ -10,6 +10,7 @@ ProjectPath = "TestProject";
 
 Menu.Init();
 
+// Initialize Window
 SetConfigFlags(ConfigFlags.ResizableWindow);
 
 InitWindow(1280, 720, "Source+");
@@ -19,8 +20,10 @@ SetWindowIcon(icon);
 
 rlImGui.Setup(true, true);
 
+// Main application loop
 while (!WindowShouldClose())
 {
+    // Update
     for (int i = 0; i < Windows.Count; i++)
     {
         Windows[i].Update(out bool closed);
@@ -29,6 +32,7 @@ while (!WindowShouldClose())
             i--;
     }
 
+    // Draw
     BeginDrawing();
     ClearBackground(Color.Black);
 
@@ -52,6 +56,7 @@ while (!WindowShouldClose())
     EndDrawing();
 }
 
+// Application closing - unload everything
 rlImGui.Shutdown();
 
 CloseWindow();
