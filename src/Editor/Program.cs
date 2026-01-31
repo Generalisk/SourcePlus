@@ -26,7 +26,7 @@ while (!WindowShouldClose())
     // Update
     for (int i = 0; i < Windows.Count; i++)
     {
-        Windows[i].Update(out bool closed);
+        Windows[i].UpdateInternal(out bool closed);
 
         if (closed)
             i--;

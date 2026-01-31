@@ -35,7 +35,7 @@ internal abstract class Window
         Global.Windows.Remove(this);
     }
 
-    internal void Update(out bool closed)
+    internal void UpdateInternal(out bool closed)
     {
         Update();
 
