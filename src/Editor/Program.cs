@@ -57,6 +57,9 @@ while (!WindowShouldClose())
 }
 
 // Application closing - unload everything
+while (Windows.Count > 0)
+    Windows[0].Dispose();
+
 rlImGui.Shutdown();
 
 CloseWindow();
