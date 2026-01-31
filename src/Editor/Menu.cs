@@ -12,7 +12,7 @@ internal static class Menu
 {
     private static KeyValuePair<string, Type>[] windows = { };
 
-    public static void Init()
+    internal static void Init()
     {
         // Retrieve window menu buttons
         var assembly = Assembly.GetExecutingAssembly();
@@ -31,7 +31,7 @@ internal static class Menu
         Menu.windows = windows.ToArray();
     }
 
-    public static void Draw()
+    internal static void Draw()
     {
         if (BeginMainMenuBar())
         {

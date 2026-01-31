@@ -46,7 +46,7 @@ while (!WindowShouldClose())
     {
         SetNextWindowSizeConstraints(window.MinSize, window.MaxSize);
         if (Begin(window.Name, ref window.open, window.Flags))
-            window.Draw();
+            window.DrawInternal();
         End();
     }
 

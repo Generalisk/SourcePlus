@@ -16,7 +16,7 @@ internal abstract class Window
     public virtual Vector2 MaxSize { get; set; } =
         new Vector2(ushort.MaxValue, ushort.MaxValue);
 
-    public bool open = true;
+    internal bool open = true;
 
     public Window() => Global.Windows.Add(this);
 
@@ -25,8 +25,10 @@ internal abstract class Window
     /// </summary>
     public virtual void Dispose() => Global.Windows.Remove(this);
 
-    public virtual void Update(out bool closed)
+    internal void Update(out bool closed)
     {
+        Update();
+
         closed = false;
 
         if (!open)
@@ -36,6 +38,9 @@ internal abstract class Window
             return;
         }
     }
-    
-    public abstract void Draw();
+
+    internal void DrawInternal() => Draw();
+
+    protected virtual void Update() { }
+    protected abstract void Draw();
 }

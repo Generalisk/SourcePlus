@@ -5,5 +5,5 @@ internal class TestWindow : Window
     public override string Name
     { get => "Test Window"; }
 
-    public override void Draw() { }
+    protected override void Draw() { }
 }
