@@ -16,6 +16,8 @@ InitWindow(1280, 720, "Source+");
 var icon = LoadImage("Content/ApplicationIcon.png");
 SetWindowIcon(icon);
 
+SetExitKey(KeyboardKey.Null);
+
 rlImGui.Setup(true, true);
 
 Menu.Init();
