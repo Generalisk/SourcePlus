@@ -49,7 +49,6 @@ while (!WindowShouldClose())
 
     rlImGui.End();
 
-    DrawFPS(10, 24);
     EndDrawing();
 }
 

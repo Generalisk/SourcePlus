@@ -75,6 +75,8 @@ internal class View3DWindow : Window
 
         EndMode3D();
 
+        DrawFPS(10, 10);
+
         EndTextureMode();
 
         // Draw the screen texture onto the window
