@@ -43,12 +43,7 @@ while (!WindowShouldClose())
     DockSpaceOverViewport();
 
     foreach (var window in Windows)
-    {
-        SetNextWindowSizeConstraints(window.MinSize, window.MaxSize);
-        if (Begin(window.Name, ref window.open, window.Flags))
-            window.DrawInternal();
-        End();
-    }
+        window.DrawInternal();
 
     rlImGui.End();
 

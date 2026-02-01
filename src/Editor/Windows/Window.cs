@@ -1,6 +1,8 @@
 ﻿using ImGuiNET;
 using System.Numerics;
 
+using static ImGuiNET.ImGui;
+
 namespace SourcePlus.Editor.Windows;
 
 /// <summary>
@@ -16,7 +18,7 @@ internal abstract class Window
     public virtual Vector2 MaxSize { get; set; } =
         new Vector2(ushort.MaxValue, ushort.MaxValue);
 
-    internal bool open = true;
+    private bool open = true;
 
     public Window()
     {
@@ -35,7 +37,7 @@ internal abstract class Window
         Global.Windows.Remove(this);
     }
 
-    internal void UpdateInternal(out bool closed)
+    internal virtual void UpdateInternal(out bool closed)
     {
         Update();
 
@@ -49,7 +51,13 @@ internal abstract class Window
         }
     }
 
-    internal void DrawInternal() => Draw();
+    internal virtual void DrawInternal()
+    {
+        SetNextWindowSizeConstraints(MinSize, MaxSize);
+        if (Begin(Name, ref open, Flags))
+            Draw();
+        End();
+    }
 
     protected virtual void Init() { }
     protected virtual void Shutdown() { }
