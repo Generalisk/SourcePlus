@@ -8,8 +8,6 @@ using static Raylib_cs.Raylib;
 // Temporary path - will add a way to properly set project paths later
 ProjectPath = "TestProject";
 
-Menu.Init();
-
 // Initialize Window
 SetConfigFlags(ConfigFlags.ResizableWindow);
 
@@ -19,6 +17,8 @@ var icon = LoadImage("Content/ApplicationIcon.png");
 SetWindowIcon(icon);
 
 rlImGui.Setup(true, true);
+
+Menu.Init();
 
 // Main application loop
 while (!WindowShouldClose())
