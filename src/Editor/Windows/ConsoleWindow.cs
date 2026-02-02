@@ -1,6 +1,8 @@
 ﻿using ImGuiNET;
 using System.Numerics;
 
+using static ImGuiNET.ImGui;
+
 namespace SourcePlus.Editor.Windows;
 
 internal class ConsoleWindow : Window
@@ -11,17 +13,25 @@ internal class ConsoleWindow : Window
 
     protected override void Draw()
     {
-        foreach (var log in Logs)
+        if (Button("Clear"))
+            Logs.Clear();
+
+        if (BeginChild("logList", GetWindowSize() - (GetCursorPos() + new Vector2(0, 8))))
         {
-            Vector4 color;
-            switch (log.Type)
+            foreach (var log in Logs)
             {
-                case LogType.Warning: color = new Vector4(1, 1, 0, 1); break;
-                case LogType.Error: color = new Vector4(1, 0, 0, 1); break;
-                default: color = new Vector4(1, 1, 1, 1); break;
+                Vector4 color;
+                switch (log.Type)
+                {
+                    case LogType.Warning: color = new Vector4(1, 1, 0, 1); break;
+                    case LogType.Error: color = new Vector4(1, 0, 0, 1); break;
+                    default: color = new Vector4(1, 1, 1, 1); break;
+                }
+
+                TextColored(color, log.Message);
             }
 
-            ImGui.TextColored(color, log.Message);
+            EndChild();
         }
     }
 }
