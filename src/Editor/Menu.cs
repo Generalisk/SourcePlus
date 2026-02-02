@@ -44,6 +44,27 @@ internal static class Menu
                 EndMenu();
             }
 
+#if DEBUG
+            if (BeginMenu("Debug"))
+            {
+                if (BeginMenu("Test Log"))
+                {
+                    if (MenuItem("Message"))
+                        Log("Test Message");
+
+                    if (MenuItem("Warning"))
+                        LogWarning("Test Warning");
+
+                    if (MenuItem("Error"))
+                        LogError("Test Error");
+
+                    EndMenu();
+                }
+
+                EndMenu();
+            }
+#endif
+
             EndMainMenuBar();
         }
     }
