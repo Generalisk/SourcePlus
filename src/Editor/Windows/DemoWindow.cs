@@ -1,5 +1,5 @@
 ﻿#if DEBUG
-using ImGuiNET;
+using static ImGuiNET.ImGui;
 
 namespace SourcePlus.Editor.Windows;
 
@@ -25,13 +25,11 @@ internal class DemoWindow : Window
 
     internal override void DrawInternal()
     {
-        ImGui.SetNextWindowSizeConstraints(MinSize, MaxSize);
-        ImGui.ShowDemoWindow(ref open);
+        SetNextWindowSizeConstraints(MinSize, MaxSize);
+        ShowDemoWindow(ref open);
     }
 
-    protected override void Draw()
-    {
+    protected override void Draw() =>
         throw new NotImplementedException();
-    }
 }
 #endif // DEBUG
