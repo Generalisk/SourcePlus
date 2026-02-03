@@ -1,5 +1,4 @@
-﻿using ImGuiNET;
-using System.Numerics;
+﻿using System.Numerics;
 
 using static ImGuiNET.ImGui;
 
@@ -22,15 +21,19 @@ internal class ConsoleWindow : Window
 
         SameLine();
 
-        Checkbox("Messages", ref showMessages);
+
+        var messageCount = Logs.Where(x => x.Type == LogType.Message).Count();
+        Checkbox(string.Format("Messages ({0})", messageCount), ref showMessages);
 
         SameLine();
 
-        Checkbox("Warnings", ref showWarnings);
+        var warningCount = Logs.Where(x => x.Type == LogType.Warning).Count();
+        Checkbox(string.Format("Warnings ({0})", warningCount), ref showWarnings);
 
         SameLine();
 
-        Checkbox("Errors", ref showErrors);
+        var errorCount = Logs.Where(x => x.Type == LogType.Error).Count();
+        Checkbox(string.Format("Errors ({0})", errorCount), ref showErrors);
 
         if (BeginChild("logList", GetWindowSize() - (GetCursorPos() + new Vector2(0, 8))))
         {
