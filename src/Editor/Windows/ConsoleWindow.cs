@@ -14,6 +14,8 @@ internal class ConsoleWindow : Window
     private bool showWarnings = true;
     private bool showErrors = true;
 
+    private bool collapse = false;
+
     protected override void Draw()
     {
         if (Button("Clear"))
@@ -21,6 +23,9 @@ internal class ConsoleWindow : Window
 
         SameLine();
 
+        Checkbox("Collapse", ref collapse);
+
+        SameLine();
 
         var messageCount = Logs.Where(x => x.Type == LogType.Message).Count();
         Checkbox(string.Format("Messages ({0})", messageCount), ref showMessages);
@@ -37,7 +42,11 @@ internal class ConsoleWindow : Window
 
         if (BeginChild("logList", GetWindowSize() - (GetCursorPos() + new Vector2(0, 8))))
         {
-            foreach (var log in Logs)
+            var logs = Logs;
+
+            if (collapse) logs = Logs.Distinct().ToList();
+
+            foreach (var log in logs)
             {
                 Vector4 color = new Vector4(1, 1, 1, 1);
                 switch (log.Type)
