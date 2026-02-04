@@ -64,7 +64,7 @@ internal class ConsoleWindow : Window
                         break;
                 }
 
-                TextColored(color, log.Message);
+                TextColored(color, string.Format("[{1}] {0}", log.Message, log.Time));
             }
 
             EndChild();

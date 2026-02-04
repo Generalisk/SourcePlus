@@ -15,7 +15,7 @@ internal static class Debug
     {
         Logs.Add(new LogEntry(LogType.Message, string.Format(text, args)));
 
-        Console.WriteLine(text, args);
+        Console.WriteLine(string.Format("[{1}] {0}", text, DateTime.Now), args);
     }
 
     /// <summary>
@@ -28,7 +28,7 @@ internal static class Debug
         Logs.Add(new LogEntry(LogType.Warning, string.Format(text, args)));
 
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(text, args);
+        Console.WriteLine(string.Format("[{1}] {0}", text, DateTime.Now), args);
         Console.ResetColor();
     }
 
@@ -42,7 +42,7 @@ internal static class Debug
         Logs.Add(new LogEntry(LogType.Error, string.Format(text, args)));
 
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine(text, args);
+        Console.WriteLine(string.Format("[{1}] {0}", text, DateTime.Now), args);
         Console.ResetColor();
     }
 }
@@ -51,6 +51,7 @@ internal struct LogEntry
 {
     public LogType Type { get; }
     public string Message { get; }
+    public DateTime Time { get; } = DateTime.Now;
 
     public LogEntry(LogType type, string message)
     {
