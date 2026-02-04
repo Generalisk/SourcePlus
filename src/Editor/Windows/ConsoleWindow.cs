@@ -42,14 +42,39 @@ internal class ConsoleWindow : Window
 
         if (BeginChild("logList", GetWindowSize() - (GetCursorPos() + new Vector2(0, 8))))
         {
-            var logs = Logs;
+            var logs = new List<string>();
+            var timestamps = new List<DateTime>();
+            var types = new List<LogType>();
 
-            if (collapse) logs = Logs.Distinct().ToList();
+            if (collapse)
+            {
+                foreach (var log in Logs)
+                {
+                    if (logs.Contains(log.Message))
+                    {
+                        var index = logs.IndexOf(log.Message);
 
-            foreach (var log in logs)
+                        timestamps[index] = log.Time;
+                    }
+                    else
+                    {
+                        logs.Add(log.Message);
+                        timestamps.Add(log.Time);
+                        types.Add(log.Type);
+                    }
+                }
+            }
+            else
+            {
+                logs = Logs.Select(x => x.Message).ToList();
+                timestamps = Logs.Select(x => x.Time).ToList();
+                types = Logs.Select(x => x.Type).ToList();
+            }
+
+            for (int i = 0; i < logs.Count; i++)
             {
                 Vector4 color = new Vector4(1, 1, 1, 1);
-                switch (log.Type)
+                switch (types[i])
                 {
                     case LogType.Message:
                         if (!showMessages) continue;
@@ -64,7 +89,7 @@ internal class ConsoleWindow : Window
                         break;
                 }
 
-                TextColored(color, string.Format("[{1}] {0}", log.Message, log.Time));
+                TextColored(color, string.Format("[{1}] {0}", logs[i], timestamps[i]));
             }
 
             EndChild();
