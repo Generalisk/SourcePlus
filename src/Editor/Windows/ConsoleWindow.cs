@@ -101,7 +101,17 @@ internal class ConsoleWindow : Window
                         break;
                 }
 
-                TextColored(color, string.Format("[{1}] {0}", logs[i], timestamps[i]));
+                var hour = timestamps[i].Hour.ToString();
+                var minute = timestamps[i].Minute.ToString();
+                var second = timestamps[i].Second.ToString();
+
+                hour = hour.Length > 1 ? hour : "0" + hour;
+                minute = minute.Length > 1 ? minute : "0" + minute;
+                second = second.Length > 1 ? second : "0" + second;
+
+                var time = string.Format("{0}:{1}:{2}", hour, minute, second);
+
+                TextColored(color, string.Format("[{1}] {0}", logs[i], time));
             }
 
             EndChild();
