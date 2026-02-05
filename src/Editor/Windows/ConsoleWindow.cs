@@ -50,10 +50,22 @@ internal class ConsoleWindow : Window
             {
                 foreach (var log in Logs)
                 {
-                    if (logs.Contains(log.Message))
-                    {
-                        var index = logs.IndexOf(log.Message);
+                    int index = -1;
 
+                    if (logs.Count > 0)
+                    {
+                        while (true)
+                        {
+                            index = logs.IndexOf(log.Message, Math.Min(index + 1, logs.Count));
+
+                            if (index < 0) break;
+
+                            if (types[index] == log.Type) break;
+                        }
+                    }
+
+                    if (index >= 0)
+                    {
                         timestamps[index] = log.Time;
                     }
                     else
