@@ -43,7 +43,7 @@ internal class ConsoleWindow : Window
         if (BeginChild("logList", GetWindowSize() - (GetCursorPos() + new Vector2(0, 8))))
         {
             var logs = new List<string>();
-            var timestamps = new List<DateTime>();
+            var timestamps = new List<TimeSpan>();
             var types = new List<LogType>();
 
             if (collapse)
@@ -101,17 +101,7 @@ internal class ConsoleWindow : Window
                         break;
                 }
 
-                var hour = timestamps[i].Hour.ToString();
-                var minute = timestamps[i].Minute.ToString();
-                var second = timestamps[i].Second.ToString();
-
-                hour = hour.Length > 1 ? hour : "0" + hour;
-                minute = minute.Length > 1 ? minute : "0" + minute;
-                second = second.Length > 1 ? second : "0" + second;
-
-                var time = string.Format("{0}:{1}:{2}", hour, minute, second);
-
-                TextColored(color, string.Format("[{1}] {0}", logs[i], time));
+                TextColored(color, string.Format("[{1}] {0}", logs[i], timestamps[i].ToTimestamp()));
             }
 
             EndChild();

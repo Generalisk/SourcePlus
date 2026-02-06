@@ -13,9 +13,10 @@ internal static class Debug
     /// <param name="args">Additional formatting arguments</param>
     public static void Log(string text, params object[] args)
     {
-        Logs.Add(new LogEntry(LogType.Message, string.Format(text, args)));
+        var entry = new LogEntry(LogType.Message, string.Format(text, args));
+        Logs.Add(entry);
 
-        Console.WriteLine(string.Format("[{1}] {0}", text, DateTime.Now), args);
+        Console.WriteLine(string.Format("[{1}] {0}", text, entry.Time.ToTimestamp()), args);
     }
 
     /// <summary>
@@ -25,10 +26,11 @@ internal static class Debug
     /// <param name="args">Additional formatting arguments</param>
     public static void LogWarning(string text, params object[] args)
     {
-        Logs.Add(new LogEntry(LogType.Warning, string.Format(text, args)));
+        var entry = new LogEntry(LogType.Warning, string.Format(text, args));
+        Logs.Add(entry);
 
         Console.ForegroundColor = ConsoleColor.Yellow;
-        Console.WriteLine(string.Format("[{1}] {0}", text, DateTime.Now), args);
+        Console.WriteLine(string.Format("[{1}] {0}", text, entry.Time.ToTimestamp()), args);
         Console.ResetColor();
     }
 
@@ -39,11 +41,25 @@ internal static class Debug
     /// <param name="args">Additional formatting arguments</param>
     public static void LogError(string text, params object[] args)
     {
-        Logs.Add(new LogEntry(LogType.Error, string.Format(text, args)));
+        var entry = new LogEntry(LogType.Error, string.Format(text, args));
+        Logs.Add(entry);
 
         Console.ForegroundColor = ConsoleColor.Red;
-        Console.WriteLine(string.Format("[{1}] {0}", text, DateTime.Now), args);
+        Console.WriteLine(string.Format("[{1}] {0}", text, entry.Time.ToTimestamp()), args);
         Console.ResetColor();
+    }
+
+    public static string ToTimestamp(this TimeSpan time)
+    {
+        var hour = time.Hours.ToString();
+        var minute = time.Minutes.ToString();
+        var second = time.Seconds.ToString();
+
+        hour = hour.Length > 1 ? hour : "0" + hour;
+        minute = minute.Length > 1 ? minute : "0" + minute;
+        second = second.Length > 1 ? second : "0" + second;
+
+        return string.Format("{0}:{1}:{2}", hour, minute, second);
     }
 }
 
@@ -51,7 +67,7 @@ internal struct LogEntry
 {
     public LogType Type { get; }
     public string Message { get; }
-    public DateTime Time { get; } = DateTime.Now;
+    public TimeSpan Time { get; } = DateTime.Now.TimeOfDay;
 
     public LogEntry(LogType type, string message)
     {
