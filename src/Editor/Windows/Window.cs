@@ -22,6 +22,13 @@ internal abstract class Window
 
     public Window()
     {
+        if (WindowExists(GetType()))
+        {
+            SetWindowFocus(Name);
+            Dispose();
+            return;
+        }
+
         Global.Windows.Add(this);
 
         Init();
