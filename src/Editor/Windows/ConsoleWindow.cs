@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using ImGuiNET;
+using System.Numerics;
 
 using static ImGuiNET.ImGui;
 
@@ -7,6 +8,9 @@ namespace SourcePlus.Editor.Windows;
 internal class ConsoleWindow : Window
 {
     public override string Name { get; } = "Console";
+
+    public override ImGuiWindowFlags Flags { get; set; }
+        = ImGuiWindowFlags.NoScrollbar;
 
     public override Vector2 MinSize { get; set; } = new Vector2(480, 240);
 
@@ -18,6 +22,7 @@ internal class ConsoleWindow : Window
 
     protected override void Draw()
     {
+        // Draw header
         if (Button("Clear"))
             Logs.Clear();
 
@@ -40,8 +45,9 @@ internal class ConsoleWindow : Window
         var errorCount = Logs.Where(x => x.Type == LogType.Error).Count();
         Checkbox(string.Format("Errors ({0})", errorCount), ref showErrors);
 
-        if (BeginChild("logList", GetWindowSize() - (GetCursorPos() + new Vector2(0, 8))))
+        if (BeginChild("console_log", GetWindowSize() - (GetCursorPos() + new Vector2(0, 8))))
         {
+            // Process log (& collapse if enabled)
             var logs = new List<string>();
             var timestamps = new List<TimeSpan>();
             var types = new List<LogType>();
@@ -86,6 +92,7 @@ internal class ConsoleWindow : Window
                 types = Logs.Select(x => x.Type).ToList();
             }
 
+            // Draw log
             for (int i = 0; i < logs.Count; i++)
             {
                 Vector4 color = new Vector4(1, 1, 1, 1);

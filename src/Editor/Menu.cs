@@ -50,20 +50,20 @@ internal static class Menu
                 if (BeginMenu("Test Log"))
                 {
                     if (MenuItem("Message"))
-                        Log("Test Message");
+                        Log("Hello world!");
 
                     if (MenuItem("Warning"))
-                        LogWarning("Test Warning");
+                        LogWarning("Hello world!");
 
                     if (MenuItem("Error"))
-                        LogError("Test Error");
+                        LogError("Hello world!");
 
                     EndMenu();
                 }
 
                 EndMenu();
             }
-#endif
+#endif // DEBUG
 
             EndMainMenuBar();
         }
