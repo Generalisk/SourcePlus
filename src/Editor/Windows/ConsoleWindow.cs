@@ -45,6 +45,7 @@ internal class ConsoleWindow : Window
             var logs = new List<string>();
             var timestamps = new List<TimeSpan>();
             var types = new List<LogType>();
+            var collapseCount = new List<ulong>();
 
             if (collapse)
             {
@@ -67,12 +68,14 @@ internal class ConsoleWindow : Window
                     if (index >= 0)
                     {
                         timestamps[index] = log.Time;
+                        collapseCount[index]++;
                     }
                     else
                     {
                         logs.Add(log.Message);
                         timestamps.Add(log.Time);
                         types.Add(log.Type);
+                        collapseCount.Add(1);
                     }
                 }
             }
@@ -101,10 +104,15 @@ internal class ConsoleWindow : Window
                         break;
                 }
 
-                TextColored(color, string.Format("[{1}] {0}", logs[i], timestamps[i].ToTimestamp()));
-            }
+                var text = string.Format("[{1}] {0}", logs[i], timestamps[i].ToTimestamp());
 
-            EndChild();
+                if (collapse)
+                    text += string.Format(" ({0})", collapseCount[i]);
+
+                TextColored(color, text);
+            }
         }
+
+        EndChild();
     }
 }
