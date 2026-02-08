@@ -17,6 +17,8 @@ internal class ContentBrowserWindow : Window
     private string Path { get => ProjectPath + "/" + path; }
     private string path = "game";
 
+    private List<string> expanded = new List<string>() { "game", "src" };
+
     protected override void Update()
     {
         if (!Directory.Exists(ProjectPath + "/game"))
@@ -75,8 +77,24 @@ internal class ContentBrowserWindow : Window
 
     private void DrawSidePanelDirectory(string directory)
     {
+        directory = directory.Replace("\\", "/");
+
+        var isExpanded = expanded.Contains(directory);
+
+        PushID(new DirectoryInfo(directory).Name);
+        if (Button(isExpanded ? "-" : "+"))
+            if (isExpanded)
+                expanded.Remove(directory);
+            else
+                expanded.Add(directory);
+        PopID();
+
+        SameLine();
+
         if (Button(new DirectoryInfo(directory).Name))
             path = directory;
+
+        if (!isExpanded) return;
 
         var dirs = Directory.GetDirectories(ProjectPath + "/" + directory);
 
