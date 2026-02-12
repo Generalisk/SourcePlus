@@ -60,8 +60,8 @@ while (Windows.Count > 0)
 
 rlImGui.Shutdown();
 
-CloseWindow();
-
 UnloadImage(icon);
+
+CloseWindow();
 
 ProjectInfo.Save();
