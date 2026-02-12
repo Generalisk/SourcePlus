@@ -8,6 +8,8 @@ using static Raylib_cs.Raylib;
 // Temporary path - will add a way to properly set project paths later
 ProjectPath = "TestProject";
 
+ProjectInfo.Load();
+
 // Initialize Window
 SetConfigFlags(ConfigFlags.ResizableWindow);
 
@@ -61,3 +63,5 @@ rlImGui.Shutdown();
 CloseWindow();
 
 UnloadImage(icon);
+
+ProjectInfo.Save();

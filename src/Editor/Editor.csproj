@@ -12,6 +12,7 @@
 		<PackageReference Include="ImGui.NET" Version="1.91.6.1" />
 		<PackageReference Include="Raylib-cs" Version="7.0.2" />
 		<PackageReference Include="rlImGui-cs" Version="3.2.0" />
+		<PackageReference Include="ValveKeyValue" Version="0.20.0.417" />
 	</ItemGroup>
 
 	<!--Copy Application Icon to Build-->
