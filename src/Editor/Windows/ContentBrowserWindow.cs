@@ -19,6 +19,12 @@ internal class ContentBrowserWindow : Window
 
     private List<string> expanded = new List<string>() { "game", "src" };
 
+    protected override void Init()
+    {
+        base.Init();
+        Update();
+    }
+
     protected override void Update()
     {
         if (!Directory.Exists(ProjectPath + "/game"))
@@ -46,7 +52,6 @@ internal class ContentBrowserWindow : Window
             DrawSidePanelDirectory("game");
             DrawSidePanelDirectory("src");
         }
-
         EndChild();
 
         cursorPos.X += 200;
