@@ -66,15 +66,20 @@ internal class ContentBrowserWindow : Window
             var files = Directory.GetFiles(Path);
 
             foreach (var dir in dirs)
-            {
                 if (Button(new DirectoryInfo(dir).Name))
                     path = dir.Substring(ProjectPath.Length + 1);
-            }
 
             foreach (var file in files)
-            {
                 if (Button(new FileInfo(file).Name))
-                    FileTools.OpenFile(file);
+                    FileTools.OpenPath(file);
+
+            // Context menu
+            if (BeginPopupContextWindow())
+            {
+                if (MenuItem("Open in Explorer"))
+                    FileTools.OpenPath(Path);
+
+                EndPopup();
             }
         }
         EndChild();

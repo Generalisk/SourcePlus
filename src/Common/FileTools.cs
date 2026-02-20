@@ -4,9 +4,11 @@ namespace SourcePlus;
 
 internal static class FileTools
 {
-    public static void OpenFile(string path)
+    public static void OpenPath(string path)
     {
+        Log("Opening \"{0}\"", path);
         path = Path.GetFullPath(path);
+
         Process.Start(new ProcessStartInfo()
         {
             // TODO: Test on devices that aren't Windows
@@ -20,7 +22,6 @@ internal static class FileTools
             FileName = "/bin/bash",
             Arguments = "xdg-open \"" + path + "\"",
 #endif
-            WindowStyle = ProcessWindowStyle.Hidden,
         });
     }
 }
