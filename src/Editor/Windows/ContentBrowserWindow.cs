@@ -19,6 +19,8 @@ internal class ContentBrowserWindow : Window
 
     private List<string> expanded = new List<string>() { "game", "src" };
 
+    private string? selected = null;
+
     protected override void Init()
     {
         base.Init();
@@ -62,16 +64,25 @@ internal class ContentBrowserWindow : Window
         // Draw Main
         if (BeginChild("contentbrowser_main", new Vector2(windowWidth, windowHeight), ImGuiChildFlags.AlwaysUseWindowPadding))
         {
+            Text(Path + "/" + selected);
+            Separator();
+
             var dirs = Directory.GetDirectories(Path);
             var files = Directory.GetFiles(Path);
 
             foreach (var dir in dirs)
-                if (Button(new DirectoryInfo(dir).Name))
-                    path = dir.Substring(ProjectPath.Length + 1);
+            {
+                var name = new DirectoryInfo(dir).Name;
+
+                if (Button(name)) SelectItem(name);
+            }
 
             foreach (var file in files)
-                if (Button(new FileInfo(file).Name))
-                    FileTools.OpenPath(file);
+            {
+                var name = new FileInfo(file).Name;
+
+                if (Button(name)) SelectItem(name);
+            }
 
             // Context menu
             if (BeginPopupContextWindow())
@@ -102,7 +113,7 @@ internal class ContentBrowserWindow : Window
         SameLine();
 
         if (Button(new DirectoryInfo(directory).Name))
-            path = directory;
+            OpenDirectory(directory);
 
         if (!isExpanded) return;
 
@@ -121,5 +132,22 @@ internal class ContentBrowserWindow : Window
             }
         }
         EndChild();
+    }
+
+    public void SelectItem(string? item)
+    {
+        if (selected == item && item != null)
+            if (Directory.Exists(Path + "/" + item))
+                OpenDirectory(path + "/" + item);
+            else
+                FileTools.OpenPath(Path + "/" + item);
+        else
+            selected = item;
+    }
+
+    public void OpenDirectory(string directory)
+    {
+        path = directory;
+        selected = null;
     }
 }
