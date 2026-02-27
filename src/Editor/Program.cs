@@ -36,6 +36,9 @@ while (!WindowShouldClose())
             i--;
     }
 
+    if (Popup != null)
+        Popup.UpdateInternal();
+
     // Draw
     BeginDrawing();
     ClearBackground(Color.Black);
@@ -49,12 +52,18 @@ while (!WindowShouldClose())
     foreach (var window in Windows)
         window.DrawInternal();
 
+    if (Popup != null)
+        Popup.DrawInternal();
+
     rlImGui.End();
 
     EndDrawing();
 }
 
 // Application closing - unload everything
+if (Popup != null)
+    Popup.Dispose();
+
 while (Windows.Count > 0)
     Windows[0].Dispose();
 

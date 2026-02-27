@@ -25,4 +25,8 @@ internal static class Global
 
         return false;
     }
+
+
+
+    internal static Windows.Popups.Popup? Popup { get; set; } = null;
 }

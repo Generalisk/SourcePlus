@@ -1,4 +1,5 @@
 ﻿using SourcePlus.Editor.Windows;
+using SourcePlus.Editor.Windows.Popups;
 using System.Reflection;
 
 using static ImGuiNET.ImGui;
@@ -60,6 +61,9 @@ internal static class Menu
 
                     EndMenu();
                 }
+
+                if (MenuItem("Test Popup"))
+                    new GenericPopup("Test", "This is a test popup! I'm also writing additional text here just so I can make sure that the window adjusts to wrapped text correctly.");
 
                 EndMenu();
             }
