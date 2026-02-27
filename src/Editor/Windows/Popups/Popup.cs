@@ -59,6 +59,7 @@ internal abstract class Popup : IDisposable
         var screenSize = new Vector2(Raylib.GetScreenWidth(), Raylib.GetScreenHeight());
         SetNextWindowSize(screenSize);
         SetNextWindowPos(Vector2.Zero);
+        SetNextWindowBgAlpha(0.42f);
         if (Begin("popup_background", ref open, //ImGuiWindowFlags.Popup |
             ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove |
             ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoSavedSettings))
