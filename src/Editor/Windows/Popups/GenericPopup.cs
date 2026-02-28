@@ -24,7 +24,8 @@ internal class GenericPopup : Popup
     {
         TextWrapped(message);
 
-        // TODO: Align this to the right
+        SetCursorPosX(GetWindowSize().X - CalcTextSize("Ok").X - 16);
+
         if (Button("Ok"))
             Dispose();
     }
