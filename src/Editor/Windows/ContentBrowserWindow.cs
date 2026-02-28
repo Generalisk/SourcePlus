@@ -1,4 +1,5 @@
 ﻿using ImGuiNET;
+using SourcePlus.Editor.Windows.Popups;
 using System.Numerics;
 
 using static ImGuiNET.ImGui;
@@ -89,6 +90,17 @@ internal class ContentBrowserWindow : Window
             {
                 if (MenuItem("Open in Explorer"))
                     FileTools.OpenPath(Path);
+
+                Separator();
+
+                if (selected == null || !File.Exists(Path + "/" + selected))
+                    BeginDisabled();
+
+                if (MenuItem("Rename"))
+                    new RenamePopup(Path + "/" + selected);
+
+                if (selected == null || !File.Exists(Path + "/" + selected))
+                    EndDisabled();
 
                 EndPopup();
             }

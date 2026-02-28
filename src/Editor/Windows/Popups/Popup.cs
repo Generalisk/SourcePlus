@@ -66,7 +66,6 @@ internal abstract class Popup : IDisposable
         { }
         End();
 
-
         SetNextWindowFocus();
         SetNextWindowSize(Size);
         SetNextWindowPos(Raylib.GetScreenCenter() - (Size / 2));
