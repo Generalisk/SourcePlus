@@ -24,7 +24,12 @@ internal static class Menu
 
         foreach (var type in types)
         {
-            var window = (Window)Activator.CreateInstance(type);
+            if (type == null) continue;
+
+            var window = (Window?)Activator.CreateInstance(type);
+
+            if (window == null) continue;
+
             windows.Add(new KeyValuePair<string, Type>(window.Name, type));
             window.Dispose();
         }
