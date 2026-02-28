@@ -71,8 +71,8 @@ internal abstract class Popup : IDisposable
         SetNextWindowPos(Raylib.GetScreenCenter() - (Size / 2));
         if (Begin(Title, ref open, //ImGuiWindowFlags.Popup |
             ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove |
-            ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoScrollbar |
-            ImGuiWindowFlags.NoSavedSettings))
+            ImGuiWindowFlags.NoCollapse |  ImGuiWindowFlags.NoSavedSettings |
+            ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse))
             Draw();
         End();
     }
