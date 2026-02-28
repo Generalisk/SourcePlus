@@ -85,6 +85,9 @@ internal class ContentBrowserWindow : Window
                 if (Button(name)) SelectItem(name);
             }
 
+            if (IsWindowHovered() && IsMouseClicked(ImGuiMouseButton.Left))
+                selected = null;
+
             // Context menu
             if (BeginPopupContextWindow())
             {
