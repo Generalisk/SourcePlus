@@ -102,6 +102,19 @@ internal class ContentBrowserWindow : Window
                 if (MenuItem("Rename"))
                     new RenamePopup(Path + "/" + selected);
 
+                if (MenuItem("Delete"))
+                    new AskPopup("Delete file?",
+                        string.Format("Are you sure you want to delete {0}?", selected),
+                        (bool yes) => {
+                            var path = Path + "/" + selected;
+
+                            if (!yes) return;
+
+                            if (Directory.Exists(path))
+                                FileTools.RecycleDirectory(path);
+                            else FileTools.RecycleFile(path);
+                        });
+
                 if (selected == null || !File.Exists(Path + "/" + selected))
                     EndDisabled();
 
