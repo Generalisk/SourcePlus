@@ -67,8 +67,17 @@ internal static class Menu
                     EndMenu();
                 }
 
-                if (MenuItem("Test Popup"))
-                    new GenericPopup("Test", "This is a test popup! I'm also writing additional text here just so I can make sure that the window adjusts to wrapped text correctly.");
+                if (BeginMenu("Test Popup"))
+                {
+                    if (MenuItem("Generic"))
+                        new GenericPopup("Test", "This is a test popup! I'm also writing additional text here just so I can make sure that the window adjusts to wrapped text correctly.");
+
+                    if (MenuItem("Ask"))
+                        new AskPopup("Test", "This is a test popup!", "Red pill", "Blue pill", (bool i) =>
+                        { Log("Thy have taken the {0} pill!", i ? "Red" : "Blue"); });
+
+                    EndMenu();
+                }
 
                 EndMenu();
             }
