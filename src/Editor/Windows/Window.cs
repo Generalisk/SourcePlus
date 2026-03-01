@@ -29,7 +29,7 @@ internal abstract class Window
             return;
         }
 
-        Global.Windows.Add(this);
+        ActiveWindows.Add(this);
 
         Init();
     }
@@ -41,7 +41,7 @@ internal abstract class Window
     {
         Shutdown();
 
-        Global.Windows.Remove(this);
+        ActiveWindows.Remove(this);
     }
 
     internal virtual void UpdateInternal(out bool closed)

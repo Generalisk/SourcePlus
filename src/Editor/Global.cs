@@ -1,6 +1,7 @@
 ﻿global using static SourcePlus.Editor.Global;
 
 using SourcePlus.Editor.Windows;
+using SourcePlus.Editor.Windows.Popups;
 
 namespace SourcePlus.Editor;
 
@@ -14,6 +15,7 @@ internal static class Global
 
 
     internal static List<Window> Windows { get; set; } = new List<Window>();
+    internal static List<Window> ActiveWindows { get; set; } = new List<Window>();
 
     internal static bool WindowExists<T>() => WindowExists(typeof(T));
 
@@ -28,5 +30,5 @@ internal static class Global
 
 
 
-    internal static Windows.Popups.Popup? Popup { get; set; } = null;
+    internal static Popup? ActivePopup { get; set; } = null;
 }

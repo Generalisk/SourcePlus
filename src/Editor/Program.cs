@@ -28,16 +28,16 @@ Menu.Init();
 while (!WindowShouldClose())
 {
     // Update
-    for (int i = 0; i < Windows.Count; i++)
+    for (int i = 0; i < ActiveWindows.Count; i++)
     {
-        Windows[i].UpdateInternal(out bool closed);
+        ActiveWindows[i].UpdateInternal(out bool closed);
 
         if (closed)
             i--;
     }
 
-    if (Popup != null)
-        Popup.UpdateInternal();
+    if (ActivePopup != null)
+        ActivePopup.UpdateInternal();
 
     // Draw
     BeginDrawing();
@@ -49,11 +49,11 @@ while (!WindowShouldClose())
 
     DockSpaceOverViewport();
 
-    foreach (var window in Windows)
+    foreach (var window in ActiveWindows)
         window.DrawInternal();
 
-    if (Popup != null)
-        Popup.DrawInternal();
+    if (ActivePopup != null)
+        ActivePopup.DrawInternal();
 
     rlImGui.End();
 
@@ -61,11 +61,11 @@ while (!WindowShouldClose())
 }
 
 // Application closing - unload everything
-if (Popup != null)
-    Popup.Dispose();
+if (ActivePopup != null)
+    ActivePopup.Dispose();
 
-while (Windows.Count > 0)
-    Windows[0].Dispose();
+while (ActiveWindows.Count > 0)
+    ActiveWindows[0].Dispose();
 
 rlImGui.Shutdown();
 
