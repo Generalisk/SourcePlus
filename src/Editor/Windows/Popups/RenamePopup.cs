@@ -18,18 +18,50 @@ internal class RenamePopup : Popup
 
     public RenamePopup(string path) : base()
     {
-        var fileInfo = new FileInfo(path);
+        FileSystemInfo info;
 
-        if (fileInfo.Directory == null)
+        if (Directory.Exists(path))
+            info = new DirectoryInfo(path);
+        else
+            info = new FileInfo(path);
+
+        if (!info.Exists)
         {
             LogError("Failed to open Rename popup");
             Dispose();
             return;
         }
 
-        directory = fileInfo.Directory.FullName;
-        extension = fileInfo.Extension;
-        name = fileInfo.Name;
+        if (Directory.Exists(path))
+        {
+            var dirInfo = (DirectoryInfo)info;
+
+            if (dirInfo.Parent == null)
+            {
+                LogError("Failed to open Rename popup");
+                Dispose();
+                return;
+            }
+
+            directory = dirInfo.Parent.FullName;
+        }
+        else
+        {
+            var fileInfo = (FileInfo)info;
+
+            if (fileInfo.Directory == null)
+            {
+                LogError("Failed to open Rename popup");
+                Dispose();
+                return;
+            }
+
+            directory = fileInfo.Directory.FullName;
+        }
+
+        extension = info.Extension;
+
+        name = info.Name;
         name = name.Substring(0, name.Length - extension.Length);
         newName = name;
     }
@@ -64,7 +96,9 @@ internal class RenamePopup : Popup
         var oldPath = Path.Combine(directory, name + extension);
         var newPath = Path.Combine(directory, newName + extension);
 
-        File.Move(oldPath, newPath);
+        if (Directory.Exists(oldPath))
+            Directory.Move(oldPath, newPath);
+        else File.Move(oldPath, newPath);
 
         Dispose();
     }
