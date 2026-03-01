@@ -16,8 +16,12 @@ internal class RenamePopup : Popup
 
     private string newName = "";
 
-    public RenamePopup(string path) : base()
+    private Action<string> callback;
+
+    internal RenamePopup(string path, Action<string> callback) : base()
     {
+        this.callback = callback;
+
         FileSystemInfo info;
 
         if (Directory.Exists(path))
@@ -99,6 +103,8 @@ internal class RenamePopup : Popup
         if (Directory.Exists(oldPath))
             Directory.Move(oldPath, newPath);
         else File.Move(oldPath, newPath);
+
+        callback.Invoke(newName);
 
         Dispose();
     }

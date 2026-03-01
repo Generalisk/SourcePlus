@@ -100,7 +100,8 @@ internal class ContentBrowserWindow : Window
                     BeginDisabled();
 
                 if (MenuItem("Rename"))
-                    new RenamePopup(Path + "/" + selected);
+                    new RenamePopup(Path + "/" + selected,
+                        (string newName) => { selected = newName; });
 
                 if (MenuItem("Delete"))
                     new AskPopup("Delete file?",
@@ -113,6 +114,8 @@ internal class ContentBrowserWindow : Window
                             if (Directory.Exists(path))
                                 FileTools.RecycleDirectory(path);
                             else FileTools.RecycleFile(path);
+
+                            selected = null;
                         });
 
                 if (selected == null || !File.Exists(Path + "/" + selected))
