@@ -55,7 +55,10 @@ internal class ProjectSettingsWindow : Window
 
                 var name = ProjectInfo.Instance.Name;
                 if (InputText("Name", ref name, ushort.MaxValue))
+                {
                     ProjectInfo.Instance.Name = name;
+                    UpdateTitle();
+                }
 
                 var developer = ProjectInfo.Instance.Developer;
                 if (InputText("Developer", ref developer, ushort.MaxValue))

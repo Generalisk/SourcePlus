@@ -15,6 +15,7 @@ ProjectInfo.Load();
 SetConfigFlags(ConfigFlags.ResizableWindow);
 
 InitWindow(1280, 720, "Source+");
+UpdateTitle();
 
 var icon = LoadImage("Content/ApplicationIcon.png");
 SetWindowIcon(icon);
