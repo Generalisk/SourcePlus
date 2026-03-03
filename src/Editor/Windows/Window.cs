@@ -22,7 +22,7 @@ internal abstract class Window
 
     public Window()
     {
-        if (WindowExists(GetType()))
+        if (WindowHandler.Exists(GetType()))
         {
             SetWindowFocus(Name);
             Dispose();

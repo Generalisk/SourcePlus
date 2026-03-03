@@ -11,41 +11,20 @@ namespace SourcePlus.Editor;
 /// </summary>
 internal static class Menu
 {
-    private static KeyValuePair<string, Type>[] windows = { };
-
-    internal static void Init()
-    {
-        // Retrieve window menu buttons
-        var assembly = Assembly.GetExecutingAssembly();
-
-        var types = assembly.GetTypes().Where(x => x.IsClass && !x.IsAbstract && x.IsSubclassOf(typeof(Window)));
-
-        var windows = new List<KeyValuePair<string, Type>>();
-
-        foreach (var type in types)
-        {
-            if (type == null) continue;
-
-            var window = (Window?)Activator.CreateInstance(type);
-
-            if (window == null) continue;
-
-            windows.Add(new KeyValuePair<string, Type>(window.Name, type));
-            window.Dispose();
-        }
-
-        Menu.windows = windows.ToArray();
-    }
-
     internal static void Draw()
     {
         if (BeginMainMenuBar())
         {
             if (BeginMenu("Window"))
             {
-                foreach (var window in windows)
-                    if (MenuItem(window.Key))
-                        Activator.CreateInstance(window.Value);
+                foreach (var window in WindowHandler.GetWindowNames())
+                {
+                    if (MenuItem(window))
+                    {
+                        var windowName = WindowHandler.GetWindowType(window);
+                        if (windowName != null) WindowHandler.Create(windowName);
+                    }
+                }
 
                 EndMenu();
             }
@@ -73,8 +52,8 @@ internal static class Menu
                         new GenericPopup("Test", "This is a test popup! I'm also writing additional text here just so I can make sure that the window adjusts to wrapped text correctly.");
 
                     if (MenuItem("Ask"))
-                        new AskPopup("Test", "This is a test popup!", "Red pill", "Blue pill", (bool i) =>
-                        { Log("Thy have taken the {0} pill!", i ? "Red" : "Blue"); });
+                        new AskPopup("Test", "This is a test popup!", "Red pill", "Blue pill", (bool redPill) =>
+                        { Log("Thy have tooken the {0} pill!", redPill ? "Red" : "Blue"); });
 
                     EndMenu();
                 }

@@ -1,6 +1,7 @@
 ﻿using Raylib_cs;
 using rlImGui_cs;
 using SourcePlus.Editor;
+using SourcePlus.Editor.Windows;
 
 using static ImGuiNET.ImGui;
 using static Raylib_cs.Raylib;
@@ -22,7 +23,7 @@ SetExitKey(KeyboardKey.Null);
 
 rlImGui.Setup(true, true);
 
-Menu.Init();
+WindowHandler.Init();
 
 // Main application loop
 while (!WindowShouldClose())

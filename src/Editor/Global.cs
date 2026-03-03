@@ -16,17 +16,6 @@ internal static class Global
 
     internal static List<Window> ActiveWindows { get; set; } = new List<Window>();
 
-    internal static bool WindowExists<T>() => WindowExists(typeof(T));
-
-    internal static bool WindowExists(Type type)
-    {
-        foreach (var window in ActiveWindows)
-            if (window.GetType() == type)
-                return true;
-
-        return false;
-    }
-
 
 
     internal static Popup? ActivePopup { get; set; } = null;
