@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Xml.Linq;
 
 namespace SourcePlus.Editor.Windows;
 
@@ -31,9 +30,9 @@ internal static class WindowHandler
         WindowHandler.windows = windows.ToArray();
     }
 
-    public static string? GetWindowName<T>() => GetWindowName(typeof(T));
+    public static string? GetName<T>() => GetName(typeof(T));
 
-    public static string? GetWindowName(Type type)
+    public static string? GetName(Type type)
     {
         if (!IsValidType(type)) return null;
 
@@ -45,7 +44,7 @@ internal static class WindowHandler
             return null;
     }
 
-    public static Type? GetWindowType(string name)
+    public static Type? GetType(string name)
     {
         var search = windows.Where(x => x.Key.ToLower() == name.ToLower());
 
@@ -55,10 +54,10 @@ internal static class WindowHandler
             return null;
     }
 
-    public static string[] GetWindowNames() =>
+    public static string[] GetNames() =>
         windows.Select(x => x.Key).ToArray();
 
-    public static Type[] GetWindowTypes() =>
+    public static Type[] GetTypes() =>
         windows.Select(x => x.Value).ToArray();
 
     public static void Create<T>() where T : Window

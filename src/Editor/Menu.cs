@@ -17,11 +17,11 @@ internal static class Menu
         {
             if (BeginMenu("Window"))
             {
-                foreach (var window in WindowHandler.GetWindowNames())
+                foreach (var window in WindowHandler.GetNames())
                 {
                     if (MenuItem(window))
                     {
-                        var windowName = WindowHandler.GetWindowType(window);
+                        var windowName = WindowHandler.GetType(window);
                         if (windowName != null) WindowHandler.Create(windowName);
                     }
                 }
