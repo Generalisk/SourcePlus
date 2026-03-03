@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using ImGuiNET;
+using System.Reflection;
 
 namespace SourcePlus.Editor.Windows;
 
@@ -67,9 +68,20 @@ internal static class WindowHandler
     {
         if (!IsValidType(type)) return;
 
-        if (Exists(type)) return;
+        if (Exists(type)) Select(type);
+        else Activator.CreateInstance(type);
+    }
 
-        Activator.CreateInstance(type);
+    public static void Select<T>() where T : Window
+        => Select(typeof(T));
+
+    public static void Select(Type type)
+    {
+        if (!IsValidType(type)) return;
+
+        if (!Exists(type)) return;
+
+        ImGui.SetWindowFocus(GetName(type));
     }
 
     public static bool Exists<T>() where T : Window
