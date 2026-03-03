@@ -72,6 +72,22 @@ internal static class WindowHandler
         else Activator.CreateInstance(type);
     }
 
+    public static void Close<T>() where T : Window
+        => Close(typeof(T));
+
+    public static void Close(Type type)
+    {
+        if (!IsValidType(type)) return;
+
+        if (!Exists(type)) return;
+
+        var search = ActiveWindows.Where(x => x.GetType() == type);
+
+        if (!search.Any()) return;
+
+        search.First().Dispose();
+    }
+
     public static void Select<T>() where T : Window
         => Select(typeof(T));
 
