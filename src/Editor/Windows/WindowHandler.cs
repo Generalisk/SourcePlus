@@ -12,7 +12,7 @@ internal static class WindowHandler
         // Retrieve window menu buttons
         var assembly = Assembly.GetExecutingAssembly();
 
-        var types = assembly.GetTypes().Where(x => x.IsClass && !x.IsAbstract && x.IsSubclassOf(typeof(Window)));
+        var types = assembly.GetTypes().Where(x => IsValidType(x));
 
         var windows = new List<KeyValuePair<string, Type>>();
 
@@ -35,6 +35,8 @@ internal static class WindowHandler
 
     public static string? GetWindowName(Type type)
     {
+        if (!IsValidType(type)) return null;
+
         var search = windows.Where(x => x.Value == type);
 
         if (search.Any())
@@ -63,17 +65,29 @@ internal static class WindowHandler
         => Create(typeof(T));
 
     public static void Create(Type type)
-        => Activator.CreateInstance(type);
+    {
+        if (!IsValidType(type)) return;
+
+        if (Exists(type)) return;
+
+        Activator.CreateInstance(type);
+    }
 
     public static bool Exists<T>() where T : Window
         => Exists(typeof(T));
 
     public static bool Exists(Type type)
     {
+        if (!IsValidType(type)) return false;
+
         foreach (var window in ActiveWindows)
             if (window.GetType() == type)
                 return true;
 
         return false;
     }
+
+    private static bool IsValidType(Type type)
+        => type.IsClass && !type.IsAbstract
+        && type.IsSubclassOf(typeof(Window));
 }
