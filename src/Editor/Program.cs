@@ -25,6 +25,7 @@ SetExitKey(KeyboardKey.Null);
 rlImGui.Setup(true, true);
 
 WindowHandler.Init();
+WindowHandler.LoadState();
 
 // Main application loop
 while (!WindowShouldClose())
@@ -66,8 +67,8 @@ while (!WindowShouldClose())
 if (ActivePopup != null)
     ActivePopup.Dispose();
 
-while (ActiveWindows.Count > 0)
-    ActiveWindows[0].Dispose();
+WindowHandler.SaveState();
+WindowHandler.CloseAll();
 
 rlImGui.Shutdown();
 

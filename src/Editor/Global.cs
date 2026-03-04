@@ -13,6 +13,11 @@ internal static class Global
     /// </summary>
     public static string ProjectPath { get; internal set; } = "";
 
+    /// <summary>
+    /// The local path of the users (roaming) app data folder
+    /// </summary>
+    public static string AppDataPath => Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/SourcePlus";
+
 
 
     internal static List<Window> ActiveWindows { get; set; } = new List<Window>();

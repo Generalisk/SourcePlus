@@ -1,5 +1,6 @@
 ﻿using ImGuiNET;
 using System.Reflection;
+using ValveKeyValue;
 
 namespace SourcePlus.Editor.Windows;
 
@@ -88,6 +89,12 @@ internal static class WindowHandler
         search.First().Dispose();
     }
 
+    public static void CloseAll()
+    {
+        while (ActiveWindows.Count > 0)
+            ActiveWindows[0].Dispose();
+    }
+
     public static void Select<T>() where T : Window
         => Select(typeof(T));
 
@@ -117,4 +124,46 @@ internal static class WindowHandler
     private static bool IsValidType(Type type)
         => type.IsClass && !type.IsAbstract
         && type.IsSubclassOf(typeof(Window));
+
+    private static string SaveStatePath => AppDataPath + "/windows.vdf";
+
+    /// <summary>
+    /// Loads saved window state (i.e opened windows) from your app data
+    /// </summary>
+    internal static void LoadState()
+    {
+        CloseAll();
+
+        if (!File.Exists(SaveStatePath)) return;
+
+        var serializer = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
+
+        var stream = File.OpenRead(SaveStatePath);
+        var windows = serializer.Deserialize<string[]>(stream);
+        stream.Close();
+
+        foreach (var window in windows)
+        {
+            var type = Type.GetType(window);
+            if (type != null) Create(type);
+        }
+    }
+
+    /// <summary>
+    /// Saves the current window state (i.e opened windows) to your app data
+    /// </summary>
+    internal static void SaveState()
+    {
+        if (!Directory.Exists(SaveStatePath + "/../"))
+            Directory.CreateDirectory(SaveStatePath + "/../");
+
+        var types = ActiveWindows.Select(x => x.GetType()).ToArray();
+        var windows = types.Select(x => x.AssemblyQualifiedName);
+
+        var serializer = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
+
+        var stream = File.Create(SaveStatePath);
+        serializer.Serialize(stream, windows, "Windows");
+        stream.Close();
+    }
 }
