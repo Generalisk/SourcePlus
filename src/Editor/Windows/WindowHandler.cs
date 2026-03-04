@@ -141,6 +141,9 @@ internal static class WindowHandler
 
         // Load ImGui configuration
 
+        if (!File.Exists(ImGuiConfigSavePath))
+            File.Copy("Content/imgui.ini", ImGuiConfigSavePath);
+
         // ngl "unsafe" makes it sound very scary,
         // compared to it actually just being code
         // that can cause a measly memory leak
@@ -153,7 +156,14 @@ internal static class WindowHandler
 
         // Load Active Windows
 
-        if (!File.Exists(ActiveWindowsSavePath)) return;
+        if (!File.Exists(ActiveWindowsSavePath))
+        {
+            Create<ProjectSettingsWindow>();
+            Create<ContentBrowserWindow>();
+            Create<ConsoleWindow>();
+            Create<View3DWindow>();
+            return;
+        }
 
         var serializer = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
 

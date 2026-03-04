@@ -27,4 +27,12 @@
 			<Link>Content\ApplicationIcon.png</Link>
 		</None>
 	</ItemGroup>
+
+	<!--Copy Default ImGui configuration to Build-->
+	<ItemGroup>
+		<None Include="$(SolutionDir)\Resources\imgui.ini">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<Link>Content\imgui.ini</Link>
+		</None>
+	</ItemGroup>
 </Project>
