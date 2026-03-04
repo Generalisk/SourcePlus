@@ -1,6 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<Import Project="$(SolutionDir)\Build\Base_WinExe.props" />
 
+	<PropertyGroup>
+		<!--ooooooooooo vewy scawy-->
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
 	<!--Project Info-->
 	<PropertyGroup>
 		<ApplicationIcon>$(SolutionDir)\Resources\SourcePlus_Icon.ico</ApplicationIcon>

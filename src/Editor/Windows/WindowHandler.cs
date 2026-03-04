@@ -1,5 +1,6 @@
 ﻿using ImGuiNET;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using ValveKeyValue;
 
 namespace SourcePlus.Editor.Windows;
@@ -125,20 +126,38 @@ internal static class WindowHandler
         => type.IsClass && !type.IsAbstract
         && type.IsSubclassOf(typeof(Window));
 
-    private static string SaveStatePath => AppDataPath + "/windows.vdf";
+    private static string ActiveWindowsSavePath => AppDataPath + "/windows.vdf";
+    private static string ImGuiConfigSavePath => AppDataPath + "/imgui.ini";
 
     /// <summary>
-    /// Loads saved window state (i.e opened windows) from your app data
+    /// Loads saved window state from your app data
     /// </summary>
     internal static void LoadState()
     {
         CloseAll();
 
-        if (!File.Exists(SaveStatePath)) return;
+        if (!Directory.Exists(AppDataPath))
+            Directory.CreateDirectory(AppDataPath);
+
+        // Load ImGui configuration
+
+        // ngl "unsafe" makes it sound very scary,
+        // compared to it actually just being code
+        // that can cause a measly memory leak
+        // -Generalisk, 04/03/2026
+        unsafe
+        {
+            var io = ImGui.GetIO().NativePtr;
+            io->IniFilename = (byte*)Marshal.StringToHGlobalAnsi(ImGuiConfigSavePath);
+        }
+
+        // Load Active Windows
+
+        if (!File.Exists(ActiveWindowsSavePath)) return;
 
         var serializer = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
 
-        var stream = File.OpenRead(SaveStatePath);
+        var stream = File.OpenRead(ActiveWindowsSavePath);
         var windows = serializer.Deserialize<string[]>(stream);
         stream.Close();
 
@@ -150,19 +169,21 @@ internal static class WindowHandler
     }
 
     /// <summary>
-    /// Saves the current window state (i.e opened windows) to your app data
+    /// Saves the current window state to your app data
     /// </summary>
     internal static void SaveState()
     {
-        if (!Directory.Exists(SaveStatePath + "/../"))
-            Directory.CreateDirectory(SaveStatePath + "/../");
+        if (!Directory.Exists(ActiveWindowsSavePath + "/../"))
+            Directory.CreateDirectory(ActiveWindowsSavePath + "/../");
+
+        // Save Active Windows
 
         var types = ActiveWindows.Select(x => x.GetType()).ToArray();
         var windows = types.Select(x => x.AssemblyQualifiedName);
 
         var serializer = KVSerializer.Create(KVSerializationFormat.KeyValues1Text);
 
-        var stream = File.Create(SaveStatePath);
+        var stream = File.Create(ActiveWindowsSavePath);
         serializer.Serialize(stream, windows, "Windows");
         stream.Close();
     }

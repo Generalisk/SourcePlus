@@ -58,6 +58,13 @@ while (!WindowShouldClose())
     if (ActivePopup != null)
         ActivePopup.DrawInternal();
 
+    var io = GetIO();
+    if (io.WantSaveIniSettings)
+    {
+        WindowHandler.SaveState();
+        io.WantSaveIniSettings = false;
+    }
+
     rlImGui.End();
 
     EndDrawing();
