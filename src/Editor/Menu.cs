@@ -1,6 +1,6 @@
-﻿using SourcePlus.Editor.Windows;
+﻿using Raylib_cs;
+using SourcePlus.Editor.Windows;
 using SourcePlus.Editor.Windows.Popups;
-using System.Reflection;
 
 using static ImGuiNET.ImGui;
 
@@ -15,6 +15,49 @@ internal static class Menu
     {
         if (BeginMainMenuBar())
         {
+            if (BeginMenu("Settings"))
+            {
+                if (BeginMenu("Framerate"))
+                {
+                    if (MenuItem("24 FPS"))
+                        Raylib.SetTargetFPS(24);
+
+                    if (MenuItem("30 FPS"))
+                        Raylib.SetTargetFPS(30);
+
+                    if (MenuItem("60 FPS"))
+                        Raylib.SetTargetFPS(60);
+
+                    if (MenuItem("120 FPS"))
+                        Raylib.SetTargetFPS(120);
+
+                    if (MenuItem("240 FPS"))
+                        Raylib.SetTargetFPS(240);
+
+                    if (MenuItem("300 FPS"))
+                        Raylib.SetTargetFPS(300);
+
+                    if (MenuItem("360 FPS"))
+                        Raylib.SetTargetFPS(360);
+
+                    if (MenuItem("420 FPS"))
+                        Raylib.SetTargetFPS(420);
+
+                    if (MenuItem("480 FPS"))
+                        Raylib.SetTargetFPS(480);
+
+                    if (MenuItem("600 FPS"))
+                        Raylib.SetTargetFPS(600);
+
+                    if (MenuItem("Unlimited"))
+                        Raylib.SetTargetFPS(0);
+
+                    EndMenu();
+                }
+
+                EndMenu();
+            }
+
             if (BeginMenu("Window"))
             {
                 foreach (var window in WindowHandler.GetNames())
