@@ -1,7 +1,9 @@
-﻿using Raylib_cs;
+﻿using ImGuiNET;
+using Raylib_cs;
 using rlImGui_cs;
 using SourcePlus.Editor;
 using SourcePlus.Editor.Windows;
+using System.Numerics;
 
 using static ImGuiNET.ImGui;
 using static Raylib_cs.Raylib;
@@ -23,6 +25,17 @@ SetWindowIcon(icon);
 SetExitKey(KeyboardKey.Null);
 
 rlImGui.Setup(true, true);
+
+
+var viewport = new ImGuiViewport();
+viewport.WorkPos = new Vector2(0, Menu.HEIGHT);
+viewport.WorkSize = new Vector2(GetScreenWidth(), GetScreenHeight() - Menu.HEIGHT);
+
+ImGuiViewportPtr viewportPtr;
+unsafe
+{
+    viewportPtr = new ImGuiViewportPtr(&viewport);
+}
 
 WindowHandler.Init();
 WindowHandler.LoadState();
@@ -50,7 +63,7 @@ while (!WindowShouldClose())
 
     Menu.Draw();
 
-    DockSpaceOverViewport();
+    DockSpaceOverViewport(0, viewportPtr);
 
     foreach (var window in ActiveWindows)
         window.DrawInternal();

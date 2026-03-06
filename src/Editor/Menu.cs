@@ -11,6 +11,8 @@ namespace SourcePlus.Editor;
 /// </summary>
 internal static class Menu
 {
+    internal const int HEIGHT = 18;
+
     internal static void Draw()
     {
         if (BeginMainMenuBar())
