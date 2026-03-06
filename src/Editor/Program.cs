@@ -29,7 +29,7 @@ rlImGui.Setup(true, true);
 
 var viewport = new ImGuiViewport();
 viewport.WorkPos = new Vector2(0, Menu.HEIGHT);
-viewport.WorkSize = new Vector2(GetScreenWidth(), GetScreenHeight() - Menu.HEIGHT);
+viewport.WorkSize = new Vector2(GetScreenWidth(), GetScreenHeight() - Menu.HEIGHT - Footer.HEIGHT);
 
 ImGuiViewportPtr viewportPtr;
 unsafe
@@ -62,6 +62,7 @@ while (!WindowShouldClose())
     rlImGui.Begin();
 
     Menu.Draw();
+    Footer.Draw();
 
     DockSpaceOverViewport(0, viewportPtr);
 
