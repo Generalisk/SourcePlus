@@ -26,6 +26,7 @@ SetExitKey(KeyboardKey.Null);
 
 rlImGui.Setup(true, true);
 
+Header.Init();
 
 WindowHandler.Init();
 WindowHandler.LoadState();
@@ -47,8 +48,8 @@ while (!WindowShouldClose())
 
     // Generate Window Viewport
     var viewport = new ImGuiViewport();
-    viewport.WorkPos = new Vector2(0, Menu.HEIGHT);
-    viewport.WorkSize = new Vector2(GetScreenWidth(), GetScreenHeight() - Menu.HEIGHT - Footer.HEIGHT);
+    viewport.WorkPos = new Vector2(0, Menu.HEIGHT + Header.HEIGHT);
+    viewport.WorkSize = new Vector2(GetScreenWidth(), GetScreenHeight() - Menu.HEIGHT - Header.HEIGHT - Footer.HEIGHT);
 
     ImGuiViewportPtr viewportPtr;
     unsafe
@@ -63,6 +64,7 @@ while (!WindowShouldClose())
     rlImGui.Begin();
 
     Menu.Draw();
+    Header.Draw();
     Footer.Draw();
 
     DockSpaceOverViewport(0, viewportPtr);
@@ -88,6 +90,8 @@ while (!WindowShouldClose())
 // Application closing - unload everything
 if (ActivePopup != null)
     ActivePopup.Dispose();
+
+Header.Shutdown();
 
 WindowHandler.SaveState();
 WindowHandler.CloseAll();
