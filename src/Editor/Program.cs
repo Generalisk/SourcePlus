@@ -27,16 +27,6 @@ SetExitKey(KeyboardKey.Null);
 rlImGui.Setup(true, true);
 
 
-var viewport = new ImGuiViewport();
-viewport.WorkPos = new Vector2(0, Menu.HEIGHT);
-viewport.WorkSize = new Vector2(GetScreenWidth(), GetScreenHeight() - Menu.HEIGHT - Footer.HEIGHT);
-
-ImGuiViewportPtr viewportPtr;
-unsafe
-{
-    viewportPtr = new ImGuiViewportPtr(&viewport);
-}
-
 WindowHandler.Init();
 WindowHandler.LoadState();
 
@@ -54,6 +44,17 @@ while (!WindowShouldClose())
 
     if (ActivePopup != null)
         ActivePopup.UpdateInternal();
+
+    // Generate Window Viewport
+    var viewport = new ImGuiViewport();
+    viewport.WorkPos = new Vector2(0, Menu.HEIGHT);
+    viewport.WorkSize = new Vector2(GetScreenWidth(), GetScreenHeight() - Menu.HEIGHT - Footer.HEIGHT);
+
+    ImGuiViewportPtr viewportPtr;
+    unsafe
+    {
+        viewportPtr = new ImGuiViewportPtr(&viewport);
+    }
 
     // Draw
     BeginDrawing();
