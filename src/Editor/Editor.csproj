@@ -20,19 +20,15 @@
 		<PackageReference Include="ValveKeyValue" Version="0.20.0.417" />
 	</ItemGroup>
 
-	<!--Copy Application Icon to Build-->
+	<!--Copy Source+ Icon & Logo to Build-->
 	<ItemGroup>
 		<None Include="$(SolutionDir)\Resources\SourcePlus_Icon.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<Link>Content\ApplicationIcon.png</Link>
+			<Link>..\resources\sourceplus_icon.png</Link>
 		</None>
-	</ItemGroup>
-
-	<!--Copy Souce+ Logo to Build-->
-	<ItemGroup>
 		<None Include="$(SolutionDir)\Resources\SourcePlus_Logo.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<Link>Content\SourcePlus_Logo.png</Link>
+			<Link>..\resources\sourceplus_logo.png</Link>
 		</None>
 	</ItemGroup>
 
@@ -40,7 +36,7 @@
 	<ItemGroup>
 		<None Include="$(SolutionDir)\Resources\imgui.ini">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<Link>Content\imgui.ini</Link>
+			<Link>..\resources\imgui.ini</Link>
 		</None>
 	</ItemGroup>
 </Project>

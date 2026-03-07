@@ -15,8 +15,8 @@
 
 	<!--Output Paths-->
 	<PropertyGroup>
-		<OutputPath>$(SolutionDir)\..\bin\</OutputPath>
-		<!--<IntermediateOutputPath>$(SolutionDir)\..\obj\$(ProjectName)\</IntermediateOutputPath>-->
+		<OutputPath>$(SolutionDir)\..\game\bin\</OutputPath>
+		<!--<IntermediateOutputPath>$(SolutionDir)\obj\$(ProjectName)\</IntermediateOutputPath>-->
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 		<!--<SelfContained>true</SelfContained>-->

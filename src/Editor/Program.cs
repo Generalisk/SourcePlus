@@ -57,7 +57,7 @@ static class Program
         InitWindow(1280, 720, "Source+");
         UpdateTitle();
 
-        icon = LoadImage("Content/ApplicationIcon.png");
+        icon = LoadImage("../resources/sourceplus_icon.png");
         SetWindowIcon(icon);
 
         SetExitKey(KeyboardKey.Null);

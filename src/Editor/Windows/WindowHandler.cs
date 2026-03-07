@@ -142,7 +142,7 @@ internal static class WindowHandler
         // Load ImGui configuration
 
         if (!File.Exists(ImGuiConfigSavePath))
-            File.Copy("Content/imgui.ini", ImGuiConfigSavePath);
+            File.Copy("../resources/imgui.ini", ImGuiConfigSavePath);
 
         // ngl "unsafe" makes it sound very scary,
         // compared to it actually just being code

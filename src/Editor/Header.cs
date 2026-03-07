@@ -16,7 +16,7 @@ internal static class Header
     private static Texture2D logo;
 
     internal static void Init() =>
-        logo = LoadTexture("Content/SourcePlus_Logo.png");
+        logo = LoadTexture("../resources/sourceplus_logo.png");
 
     internal static void Shutdown() => UnloadTexture(logo);
 
