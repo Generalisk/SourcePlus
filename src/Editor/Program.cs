@@ -12,8 +12,6 @@ static class Program
 {
     private static Image icon;
 
-    private static ImGuiViewportPtr viewport;
-
     /// <summary>
     /// Application entry point
     /// </summary>
@@ -114,16 +112,6 @@ static class Program
         if (ActivePopup != null)
             ActivePopup.UpdateInternal();
 
-        // Generate Window Viewport
-        var viewport = new ImGuiViewport();
-        viewport.WorkPos = new Vector2(0, Menu.HEIGHT + Header.HEIGHT);
-        viewport.WorkSize = new Vector2(GetScreenWidth(), GetScreenHeight() - Menu.HEIGHT - Header.HEIGHT - Footer.HEIGHT);
-
-        unsafe
-        {
-            Program.viewport = new ImGuiViewportPtr(&viewport);
-        }
-
         // Save window state
         var io = GetIO();
         if (io.WantSaveIniSettings)
@@ -138,11 +126,23 @@ static class Program
     /// </summary>
     static void Draw()
     {
+        // Generate Window Viewport
+        var viewport = new ImGuiViewport();
+        viewport.WorkPos = new Vector2(0, Menu.HEIGHT + Header.HEIGHT);
+        viewport.WorkSize = new Vector2(GetScreenWidth(), GetScreenHeight() - Menu.HEIGHT - Header.HEIGHT - Footer.HEIGHT);
+
+        ImGuiViewportPtr viewportPtr;
+        unsafe
+        {
+            viewportPtr = new ImGuiViewportPtr(&viewport);
+        }
+
+        // Draw UI
         Menu.Draw();
         Header.Draw();
         Footer.Draw();
 
-        DockSpaceOverViewport(0, viewport);
+        DockSpaceOverViewport(0, viewportPtr);
 
         // Draw all active windows
         foreach (var window in ActiveWindows)
