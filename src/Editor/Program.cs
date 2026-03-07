@@ -46,6 +46,10 @@ static class Program
     /// </summary>
     static void Init()
     {
+        // Set working directory - make sure the output stays consistent
+        // regardless of where the application was called from
+        Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory + "/../");
+
         // Load project
         ProjectInfo.Load();
 
@@ -55,7 +59,7 @@ static class Program
         InitWindow(1280, 720, "Source+");
         UpdateTitle();
 
-        icon = LoadImage("../resources/sourceplus_icon.png");
+        icon = LoadImage("resources/sourceplus_icon.png");
         SetWindowIcon(icon);
 
         SetExitKey(KeyboardKey.Null);
