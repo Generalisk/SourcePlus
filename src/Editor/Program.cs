@@ -75,16 +75,16 @@ while (!WindowShouldClose())
     if (ActivePopup != null)
         ActivePopup.DrawInternal();
 
+    rlImGui.End();
+    EndDrawing();
+
+    // Save window state
     var io = GetIO();
     if (io.WantSaveIniSettings)
     {
         WindowHandler.SaveState();
         io.WantSaveIniSettings = false;
     }
-
-    rlImGui.End();
-
-    EndDrawing();
 }
 
 // Application closing - unload everything

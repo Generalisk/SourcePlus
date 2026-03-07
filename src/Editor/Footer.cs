@@ -14,6 +14,7 @@ internal static class Footer
     {
         SetNextWindowPos(new Vector2(0, Raylib.GetScreenHeight() - HEIGHT));
         SetNextWindowSize(new Vector2(Raylib.GetScreenWidth(), HEIGHT));
+
         if (Begin("footer", ImGuiWindowFlags.NoTitleBar |
             ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove |
             ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse |
