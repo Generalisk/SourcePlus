@@ -100,6 +100,42 @@ internal static class Menu
                         new AskPopup("Test", "This is a test popup!", "Red pill", "Blue pill", (bool redPill) =>
                         { Log("Thy have tooken the {0} pill!", redPill ? "Red" : "Blue"); });
 
+                    if (BeginMenu("Progress Bar"))
+                    {
+                        if (MenuItem("Standard"))
+                            new Thread(() =>
+                            {
+                                for (float i = 0; i <= 1; i += 0.01f)
+                                {
+                                    ProgressBar.Draw("Test", "Lorem Ipsum", i);
+                                    Thread.Sleep(69);
+                                }
+
+                                ProgressBar.Clear();
+                            })
+                            {
+                                IsBackground = true,
+                            }.Start();
+
+                        if (MenuItem("Cancellable"))
+                            new Thread(() =>
+                            {
+                                for (float i = 0; i <= 1; i += 0.01f)
+                                {
+                                    if (ProgressBar.DrawCancelable("Test", "Lorem Ipsum", i))
+                                        break;
+                                    Thread.Sleep(420);
+                                }
+
+                                ProgressBar.Clear();
+                            })
+                            {
+                                IsBackground = true,
+                            }.Start();
+
+                        EndMenu();
+                    }
+
                     EndMenu();
                 }
 
