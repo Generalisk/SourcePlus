@@ -59,7 +59,7 @@ internal abstract class Popup : IDisposable
         SetNextWindowSize(screenSize);
         SetNextWindowPos(Vector2.Zero);
         SetNextWindowBgAlpha(0.42f);
-        if (Begin("popup_background", ref open, //ImGuiWindowFlags.Popup |
+        if (Begin("popup_background", //ImGuiWindowFlags.Popup |
             ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoMove |
             ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoSavedSettings))
         { }
