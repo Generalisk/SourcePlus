@@ -1,4 +1,5 @@
 ﻿using Raylib_cs;
+using SourcePlus.Editor.Build;
 using SourcePlus.Editor.Windows;
 using SourcePlus.Editor.Windows.Popups;
 
@@ -17,6 +18,15 @@ internal static class Menu
     {
         if (BeginMainMenuBar())
         {
+            if (BeginMenu("File"))
+            {
+                // TODO: Get output path from ask directory dialog
+                if (MenuItem("Export"))
+                    BuildSystem.Export("TestProjectOutput");
+
+                EndMenu();
+            }
+
             if (BeginMenu("Settings"))
             {
                 if (BeginMenu("Framerate"))
