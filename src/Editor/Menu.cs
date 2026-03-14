@@ -87,6 +87,11 @@ internal static class Menu
 #if DEBUG
             if (BeginMenu("Debug"))
             {
+                if (MenuItem("Open AppData Folder"))
+                    FileTools.OpenPath(AppDataPath);
+
+                Separator();
+
                 if (BeginMenu("Test Log"))
                 {
                     if (MenuItem("Message"))
