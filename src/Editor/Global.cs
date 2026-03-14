@@ -3,6 +3,8 @@
 using Raylib_cs;
 using SourcePlus.Editor.Windows;
 using SourcePlus.Editor.Windows.Popups;
+using System;
+using System.Collections.Generic;
 
 namespace SourcePlus.Editor;
 

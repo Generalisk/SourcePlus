@@ -1,5 +1,8 @@
 ﻿using ImGuiNET;
 using SourcePlus.Editor.Windows.Popups;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Numerics;
 
 using static ImGuiNET.ImGui;

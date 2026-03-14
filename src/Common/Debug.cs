@@ -1,5 +1,8 @@
 ﻿global using static SourcePlus.Debug;
 
+using System;
+using System.Collections.Generic;
+
 namespace SourcePlus;
 
 internal static class Debug

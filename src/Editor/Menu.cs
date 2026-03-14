@@ -2,6 +2,7 @@
 using SourcePlus.Editor.Build;
 using SourcePlus.Editor.Windows;
 using SourcePlus.Editor.Windows.Popups;
+using System.Threading;
 
 using static ImGuiNET.ImGui;
 

@@ -1,4 +1,6 @@
 ﻿#if DEBUG
+using System;
+
 using static ImGuiNET.ImGui;
 
 namespace SourcePlus.Editor.Windows;
