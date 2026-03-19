@@ -10,6 +10,7 @@ internal class ProjectInfo
 
     private static string Path { get => ProjectPath + "/projectinfo.vdf"; }
 
+    // TODO: Add more properties (for gameinfo.txt)
     public string Name { get; set; } = "untitled";
     public string Developer { get; set; } = "Me";
 

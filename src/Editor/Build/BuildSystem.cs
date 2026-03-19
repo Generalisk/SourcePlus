@@ -19,6 +19,7 @@ internal static class BuildSystem
 
         var sw = Stopwatch.StartNew();
 
+        // Export content files
         var files = Directory.GetFiles(ProjectPath + "/game", "*", SearchOption.AllDirectories);
         files = files.Select(x => x.Substring((ProjectPath + "/game").Length + 1)).ToArray();
 
@@ -32,6 +33,13 @@ internal static class BuildSystem
             File.Copy(ProjectPath + "/game/" + file, outputFolder + "/" + file, true);
         }
 
+        // Generate gameinfo.txt
+        if (!Directory.Exists(outputFolder + "/" + ProjectInfo.Instance.Name))
+            Directory.CreateDirectory(outputFolder + "/" + ProjectInfo.Instance.Name);
+
+        GameInfoSerializer.Serialize(outputFolder + "/" + ProjectInfo.Instance.Name + "/gameinfo.txt");
+
+        // Finish up
         sw.Stop();
         Log("Successfully exported project in {0}", sw.Elapsed);
 
