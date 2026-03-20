@@ -64,6 +64,22 @@ internal class ProjectSettingsWindow : Window
                 if (InputText("Developer", ref developer, ushort.MaxValue))
                     ProjectInfo.Instance.Developer = developer;
 
+                var library = ProjectInfo.Instance.Library;
+                if (InputText("Library", ref library, ushort.MaxValue))
+                    ProjectInfo.Instance.Library = library;
+
+                Spacing();
+
+                var isMultiplayer = ProjectInfo.Instance.IsMultiplayer;
+                if (Checkbox("Is Multiplayer", ref isMultiplayer))
+                    ProjectInfo.Instance.IsMultiplayer = isMultiplayer;
+
+                Spacing();
+
+                var appid = ProjectInfo.Instance.AppID;
+                if (InputInt("AppID", ref appid))
+                    ProjectInfo.Instance.AppID = appid;
+
                 Spacing();
             }
 #if DEBUG

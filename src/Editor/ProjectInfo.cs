@@ -10,9 +10,13 @@ internal class ProjectInfo
 
     private static string Path { get => ProjectPath + "/projectinfo.vdf"; }
 
-    // TODO: Add more properties (for gameinfo.txt)
-    public string Name { get; set; } = "untitled";
+    public string Name { get; set; } = "Untitled";
     public string Developer { get; set; } = "Me";
+    public string Library { get; set; } = "untitled";
+
+    public int AppID { get; set; } = 243750; // Source SDK 2013 Multiplayer
+
+    public bool IsMultiplayer { get; set; } = true;
 
     ProjectInfo() { }
 

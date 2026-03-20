@@ -19,15 +19,35 @@ internal static class GameInfoSerializer
         serializer.Serialize(stream, Generate());
     }
 
+    private const string GAME_INFO_PATH = "|gameinfo_path|";
+    private const string APPID_PATH = "|appid_{0}|";
+
     private static KVObject Generate()
     {
-        var objects = new List<KVObject>();
+        var projectinfo = ProjectInfo.Instance;
 
-        // TODO: Add more properties
-        objects.Add(new KVObject("game", ProjectInfo.Instance.Name));
-        objects.Add(new KVObject("title", ProjectInfo.Instance.Name));
-        objects.Add(new KVObject("developer", ProjectInfo.Instance.Developer));
+        var gameinfo = new List<KVObject>();
+        gameinfo.Add(new KVObject("game", projectinfo.Name));
+        gameinfo.Add(new KVObject("type", projectinfo.IsMultiplayer
+            ? "multiplayer_only" : "singleplayer_only"));
 
-        return new KVObject("GameInfo", objects);
+        gameinfo.Add(new KVObject("developer", projectinfo.Developer));
+
+        var fileSystem = new List<KVObject>();
+        fileSystem.Add(new KVObject("appid", projectinfo.AppID));
+
+        var searchPaths = new List<KVObject>();
+        searchPaths.Add(new KVObject("game+mod+custom_mod", GAME_INFO_PATH + "custom/*"));
+        searchPaths.Add(new KVObject("mod+mod_write", GAME_INFO_PATH + "."));
+        searchPaths.Add(new KVObject("game+game_write", GAME_INFO_PATH + "."));
+        searchPaths.Add(new KVObject("default_write_path", GAME_INFO_PATH + "."));
+        searchPaths.Add(new KVObject("gamebin", GAME_INFO_PATH + "bin"));
+        // TODO: Impliment search paths for additional libraries
+        searchPaths.Add(new KVObject("game+download", GAME_INFO_PATH + "download"));
+
+        fileSystem.Add(new KVObject("SearchPaths", searchPaths));
+        gameinfo.Add(new KVObject("FileSystem", fileSystem));
+
+        return new KVObject("GameInfo", gameinfo);
     }
 }
