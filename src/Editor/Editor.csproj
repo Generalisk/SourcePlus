@@ -22,21 +22,24 @@
 
 	<!--Copy Source+ Icon & Logo to Build-->
 	<ItemGroup>
-		<None Include="$(SolutionDir)\Resources\SourcePlus_Icon.png">
+		<Content Include="$(SolutionDir)\Resources\SourcePlus_Icon.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<Link>..\resources\sourceplus_icon.png</Link>
-		</None>
-		<None Include="$(SolutionDir)\Resources\SourcePlus_Logo.png">
+			<Visible>false</Visible>
+		</Content>
+		<Content Include="$(SolutionDir)\Resources\SourcePlus_Logo.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<Link>..\resources\sourceplus_logo.png</Link>
-		</None>
+			<Visible>false</Visible>
+		</Content>
 	</ItemGroup>
 
 	<!--Copy Default ImGui configuration to Build-->
 	<ItemGroup>
-		<None Include="$(SolutionDir)\Resources\imgui.ini">
+		<Content Include="$(SolutionDir)\Resources\imgui.ini">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<Link>..\resources\imgui.ini</Link>
-		</None>
+			<Visible>false</Visible>
+		</Content>
 	</ItemGroup>
 </Project>

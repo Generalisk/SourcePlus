@@ -4,4 +4,9 @@
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
 	</PropertyGroup>
+
+	<!--Output Paths-->
+	<PropertyGroup>
+		<OutputPath>$(ProjectDir)\bin\</OutputPath>
+	</PropertyGroup>
 </Project>
