@@ -22,8 +22,8 @@ internal static class Menu
             if (BeginMenu("File"))
             {
                 // TODO: Get output path from ask directory dialog
-                if (MenuItem("Export"))
-                    BuildSystem.Export("TestProjectOutput");
+                if (MenuItem("Build"))
+                    BuildSystem.Build("TestProjectOutput");
 
                 EndMenu();
             }
