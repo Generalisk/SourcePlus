@@ -13,16 +13,16 @@ internal static class BuildSystem
     /// <param name="outputFolder">The directory to build the project to, should be empty</param>
     public static void Build(string outputFolder)
     {
-        // Run Export thread
+        // Run thread
         var thread = new Thread(() =>
-            RunBuild(outputFolder));
+            BuildNoThread(outputFolder));
         thread.IsBackground = true;
         thread.Start();
     }
 
-    private static void RunBuild(string outputFolder)
+    private static void BuildNoThread(string outputFolder)
     {
-        ProgressBar.Draw("Exporting", "Hold on...", 0);
+        ProgressBar.Draw("Building", "Hold on...", 0);
 
         if (Directory.Exists(outputFolder))
             if (Directory.GetDirectories(outputFolder).Length > 0
@@ -34,6 +34,8 @@ internal static class BuildSystem
         var libraryName = ProjectInfo.Instance.Library;
 
         // Export content files
+        ProgressBar.Draw("Exporting", "Hold on...", 0);
+
         var files = Directory.GetFiles(ProjectPath + "/game", "*", SearchOption.AllDirectories);
         files = files.Select(x => x.Substring((ProjectPath + "/game").Length + 1)).ToArray();
 
