@@ -1,6 +1,4 @@
 <Project>
-	<Import Project="$(SolutionDir)\Build\Base.props" />
-	
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
 	</PropertyGroup>

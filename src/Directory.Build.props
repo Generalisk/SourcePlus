@@ -12,11 +12,12 @@
 		<Version>0.0.0.0</Version>
 	</PropertyGroup>
 
-	<!--Output Paths-->
+	<!--Output Path-->
 	<PropertyGroup>
 		<OutputPath>$(SolutionDir)\..\game\bin\</OutputPath>
 		<!--<IntermediateOutputPath>$(SolutionDir)\src\obj\$(ProjectName)\</IntermediateOutputPath>-->
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 	</PropertyGroup>
 
 	<!--Debug Properties-->
