@@ -4,7 +4,7 @@ using System.IO;
 
 namespace SourcePlus;
 
-internal static class FileTools
+public static class FileTools
 {
     public static void OpenPath(string path)
     {

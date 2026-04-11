@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace SourcePlus;
 
-internal static class Debug
+public static class Debug
 {
-    internal static List<LogEntry> Logs { get; set; } = new List<LogEntry>();
+    public static List<LogEntry> Logs { get; internal set; } = new List<LogEntry>();
 
     /// <summary>
     /// Writes a log message to the console; can be formatted
@@ -66,7 +66,7 @@ internal static class Debug
     }
 }
 
-internal struct LogEntry
+public struct LogEntry
 {
     public LogType Type { get; }
     public string Message { get; }
@@ -79,7 +79,7 @@ internal struct LogEntry
     }
 }
 
-internal enum LogType
+public enum LogType
 {
     Message = 0,
     Warning = 1,

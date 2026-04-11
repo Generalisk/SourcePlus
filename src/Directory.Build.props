@@ -64,8 +64,6 @@
 	
 	<!--Include Common Scripts-->
 	<ItemGroup>
-		<Compile Include="$(SolutionDir)\Common\**">
-			<Link>Common\%(Filename)%(Extension)</Link>
-		</Compile>
+		<ProjectReference Include="$(SolutionDir)\Common\Common.csproj" />
 	</ItemGroup>
 </Project>

@@ -1,4 +1,5 @@
 ﻿global using static SourcePlus.Editor.Global;
+global using static SourcePlus.Debug;
 
 using Raylib_cs;
 using SourcePlus.Editor.Windows;
