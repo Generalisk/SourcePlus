@@ -5,6 +5,6 @@
 
 	<!--Output Path-->
 	<PropertyGroup>
-		<OutputPath>$(ProjectDir)\bin\</OutputPath>
+		<OutputPath>$(MSBuildProjectDir)\bin\</OutputPath>
 	</PropertyGroup>
 </Project>

@@ -6,7 +6,7 @@
 
 	<!--Project Info-->
 	<PropertyGroup>
-		<AssemblyName>$(ProjectName)</AssemblyName>
+		<AssemblyName>$(MSBuildProjectName)</AssemblyName>
 		<RootNamespace>SourcePlus.$(MSBuildProjectName)</RootNamespace>
 		<Company>Source+ Contributors</Company>
 		<Version>0.0.0.0</Version>
@@ -15,9 +15,10 @@
 	<!--Output Path-->
 	<PropertyGroup>
 		<OutputPath>$(SolutionDir)\..\game\bin\</OutputPath>
-		<!--<IntermediateOutputPath>$(SolutionDir)\src\obj\$(ProjectName)\</IntermediateOutputPath>-->
+		<!--<IntermediateOutputPath>$(SolutionDir)\obj\$(ProjectName)\</IntermediateOutputPath>-->
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<PublishTrimmed>true</PublishTrimmed>
 	</PropertyGroup>
 
 	<!--Debug Properties-->
