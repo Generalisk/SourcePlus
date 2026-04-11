@@ -14,8 +14,8 @@
 
 	<!--Output Path-->
 	<PropertyGroup>
-		<OutputPath>$(SolutionDir)\..\game\bin\</OutputPath>
-		<!--<IntermediateOutputPath>$(SolutionDir)\obj\$(ProjectName)\</IntermediateOutputPath>-->
+		<OutputPath>$(MSBuildThisFileDirectory)\..\game\bin\</OutputPath>
+		<!--<IntermediateOutputPath>$(MSBuildThisFileDirectory)\obj\$(MSBuildProjectName)\</IntermediateOutputPath>-->
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 		<PublishTrimmed>true</PublishTrimmed>
@@ -64,6 +64,6 @@
 	
 	<!--Include Common Scripts-->
 	<ItemGroup>
-		<ProjectReference Include="$(SolutionDir)\Common\Common.csproj" />
+		<ProjectReference Include="$(MSBuildThisFileDirectory)\Common\Common.csproj" />
 	</ItemGroup>
 </Project>

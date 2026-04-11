@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<Import Project="$(SolutionDir)\Build\Base_Dll.props" />
+	<Import Project="$(MSBuildThisFileDirectory)\..\Build\Base_Dll.props" />
 	
 	<!--Project Info-->
 	<PropertyGroup>
@@ -8,6 +8,6 @@
 
 	<!--Remove Common project reference to prevent cyclic dependencies-->
 	<ItemGroup>
-		<ProjectReference Remove="$(SolutionDir)\Common\Common.csproj" />
+		<ProjectReference Remove="$(MSBuildThisFileDirectory)\..\Common\Common.csproj" />
 	</ItemGroup>
 </Project>
