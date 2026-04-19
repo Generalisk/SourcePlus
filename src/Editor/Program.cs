@@ -28,16 +28,7 @@ static class Program
         while (!WindowShouldClose())
         {
             Update();
-
-            // Draw
-            BeginDrawing();
-            ClearBackground(Color.Black);
-            rlImGui.Begin();
-
             Draw();
-
-            rlImGui.End();
-            EndDrawing();
         }
 
         Shutdown();
@@ -143,6 +134,11 @@ static class Program
             viewportPtr = new ImGuiViewportPtr(&viewport);
         }
 
+        // Begin drawing
+        BeginDrawing();
+        ClearBackground(Color.Black);
+        rlImGui.Begin();
+
         // Draw UI
         Menu.Draw();
         Header.Draw();
@@ -157,5 +153,9 @@ static class Program
         // Draw popup (if applicable)
         if (ActivePopup != null)
             ActivePopup.DrawInternal();
+
+        // Finish drawing
+        rlImGui.End();
+        EndDrawing();
     }
 }
