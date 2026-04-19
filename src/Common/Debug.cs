@@ -7,7 +7,8 @@ namespace SourcePlus;
 
 public static class Debug
 {
-    public static List<LogEntry> Logs { get; internal set; } = new List<LogEntry>();
+    public static LogEntry[] Logs => logs.ToArray();
+    private static List<LogEntry> logs = new List<LogEntry>();
 
     /// <summary>
     /// Writes a log message to the console; can be formatted
@@ -17,7 +18,7 @@ public static class Debug
     public static void Log(string text, params object[] args)
     {
         var entry = new LogEntry(LogType.Message, string.Format(text, args));
-        Logs.Add(entry);
+        logs.Add(entry);
 
         Console.WriteLine(string.Format("[{1}] {0}", text, entry.Time.ToTimestamp()), args);
     }
@@ -30,7 +31,7 @@ public static class Debug
     public static void LogWarning(string text, params object[] args)
     {
         var entry = new LogEntry(LogType.Warning, string.Format(text, args));
-        Logs.Add(entry);
+        logs.Add(entry);
 
         Console.ForegroundColor = ConsoleColor.Yellow;
         Console.WriteLine(string.Format("[{1}] {0}", text, entry.Time.ToTimestamp()), args);
@@ -45,12 +46,17 @@ public static class Debug
     public static void LogError(string text, params object[] args)
     {
         var entry = new LogEntry(LogType.Error, string.Format(text, args));
-        Logs.Add(entry);
+        logs.Add(entry);
 
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine(string.Format("[{1}] {0}", text, entry.Time.ToTimestamp()), args);
         Console.ResetColor();
     }
+
+    /// <summary>
+    /// Clear logs from console
+    /// </summary>
+    public static void Clear() => logs.Clear();
 
     public static string ToTimestamp(this TimeSpan time)
     {

@@ -26,8 +26,7 @@ internal class ConsoleWindow : Window
     protected override void Draw()
     {
         // Draw header
-        if (Button("Clear"))
-            Logs.Clear();
+        if (Button("Clear")) Clear();
 
         SameLine();
 
