@@ -49,7 +49,7 @@ In Visual Studio, go to the top menu & open the `Build` menu. There, you can pic
 Alternatively, you can use the `Ctrl + Shift + B` and `Ctrl + B` shortcuts to build the solution and current project respectively.
 
 #### Debugging using Visual Studio
-To debug using Visual Studio, go an click on the green arrow with the text `SourcePlus` next to it or press `F5`.
+To debug using Visual Studio, go an click on the green arrow with the text `Editor` next to it or press `F5`.
 
 ## LICENSE
 The Source+ Editor is licensed under the `MIT License`, which you can read [here](LICENSE).
