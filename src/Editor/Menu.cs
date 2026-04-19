@@ -89,7 +89,7 @@ internal static class Menu
             if (BeginMenu("Debug"))
             {
                 if (MenuItem("Open AppData Folder"))
-                    FileTools.OpenPath(AppDataPath);
+                    PathTools.OpenPath(AppDataPath);
 
                 Separator();
 
@@ -158,6 +158,17 @@ internal static class Menu
                 EndMenu();
             }
 #endif // DEBUG
+
+            if (BeginMenu("Help"))
+            {
+                if (MenuItem("Source code"))
+                    PathTools.OpenURL("https://github.com/Generalisk/SourcePlus");
+
+                if (MenuItem("Report issue"))
+                    PathTools.OpenURL("https://github.com/Generalisk/SourcePlus/issues/new");
+
+                EndMenu();
+            }
 
             EndMainMenuBar();
         }

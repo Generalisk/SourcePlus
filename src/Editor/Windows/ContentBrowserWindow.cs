@@ -95,7 +95,7 @@ internal class ContentBrowserWindow : Window
             if (BeginPopupContextWindow())
             {
                 if (MenuItem("Open in Explorer"))
-                    FileTools.OpenPath(Path);
+                    PathTools.OpenPath(Path);
 
                 Separator();
 
@@ -174,7 +174,7 @@ internal class ContentBrowserWindow : Window
             if (Directory.Exists(Path + "/" + item))
                 OpenDirectory(path + "/" + item);
             else
-                FileTools.OpenPath(Path + "/" + item);
+                PathTools.OpenPath(Path + "/" + item);
         else
             selected = item;
     }

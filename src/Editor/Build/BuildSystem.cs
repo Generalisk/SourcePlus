@@ -65,6 +65,6 @@ internal static class BuildSystem
 
         ProgressBar.Clear();
 
-        FileTools.OpenPath(outputFolder);
+        PathTools.OpenPath(outputFolder);
     }
 }
