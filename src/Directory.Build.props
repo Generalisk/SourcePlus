@@ -8,8 +8,9 @@
 	<PropertyGroup>
 		<AssemblyName>$(MSBuildProjectName)</AssemblyName>
 		<RootNamespace>SourcePlus.$(MSBuildProjectName)</RootNamespace>
+		<Product>Source+</Product>
 		<Company>Source+ Contributors</Company>
-		<Version>0.0.0.0</Version>
+		<Version>0.0.0</Version>
 	</PropertyGroup>
 
 	<!--Output Path-->
