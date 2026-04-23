@@ -42,7 +42,11 @@ Source+ is a custom tool for developing mods in Valve's Source Engine. Source+ t
 Feel free to correct me or add any that i'm missing-->
 
 ## BUILD INSTRUCTIONS
-To build the project, go to the `src` folder in your operating system's terminal and use the [dotnet build command](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-build).
+To build the project, open the `scripts` folder and click on the appropriate build script.
+
+Inside the folder also lies a set of publish scripts for sharing/distributing without requiring any external dependencies.
+
+Alternatively, you can go to the `src` folder in your operating system's terminal and run the [dotnet build command](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-build).
 ### Using Visual Studio (Windows only)
 In Visual Studio, go to the top menu & open the `Build` menu. There, you can pick on whether to build the solution or just the current project.
 
