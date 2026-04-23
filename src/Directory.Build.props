@@ -19,6 +19,10 @@
 		<!--<IntermediateOutputPath>$(MSBuildThisFileDirectory)\obj\$(MSBuildProjectName)\</IntermediateOutputPath>-->
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<PublishDir>$(MSBuildThisFileDirectory)\..\publish\$(RuntimeIdentifier)\bin\</PublishDir>
 		<!--<PublishTrimmed>true</PublishTrimmed>-->
 	</PropertyGroup>
 
