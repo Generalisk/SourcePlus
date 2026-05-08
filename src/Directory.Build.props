@@ -9,7 +9,8 @@
 		<AssemblyName>$(MSBuildProjectName)</AssemblyName>
 		<RootNamespace>SourcePlus.$(MSBuildProjectName)</RootNamespace>
 		<Product>Source+</Product>
-		<Company>Source+ Contributors</Company>
+		<Company>Generalisk &amp; Source+ Contributors</Company>
+		<Copyright>Copyright &#169;2026-$([System.DateTime]::Now.ToString(yyyy)) $(Company)</Copyright>
 		<Version>0.0.0</Version>
 	</PropertyGroup>
 
