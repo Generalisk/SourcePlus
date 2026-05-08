@@ -1,5 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-	<Import Project="$(MSBuildThisFileDirectory)\..\Build\Base_WinExe.props" />
+	<Import Project="..\Build\Base_WinExe.props" />
 
 	<PropertyGroup>
 		<!--ooooooooooo vewy scawy-->
@@ -8,7 +8,7 @@
 
 	<!--Project Info-->
 	<PropertyGroup>
-		<ApplicationIcon>$(MSBuildThisFileDirectory)\..\Resources\SourcePlus_Icon.ico</ApplicationIcon>
+		<ApplicationIcon>..\Resources\SourcePlus_Icon.ico</ApplicationIcon>
 		<Description>Source+ Editor</Description>
 	</PropertyGroup>
 
@@ -22,12 +22,12 @@
 
 	<!--Copy Source+ Icon & Logo to Build-->
 	<ItemGroup>
-		<Content Include="$(MSBuildThisFileDirectory)\..\Resources\SourcePlus_Icon.png">
+		<Content Include="..\Resources\SourcePlus_Icon.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<Link>..\resources\sourceplus_icon.png</Link>
 			<Visible>false</Visible>
 		</Content>
-		<Content Include="$(MSBuildThisFileDirectory)\..\Resources\SourcePlus_Logo.png">
+		<Content Include="..\Resources\SourcePlus_Logo.png">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<Link>..\resources\sourceplus_logo.png</Link>
 			<Visible>false</Visible>
@@ -36,7 +36,7 @@
 
 	<!--Copy Default ImGui configuration to Build-->
 	<ItemGroup>
-		<Content Include="$(MSBuildThisFileDirectory)\..\Resources\imgui.ini">
+		<Content Include="..\Resources\imgui.ini">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<Link>..\resources\imgui.ini</Link>
 			<Visible>false</Visible>
