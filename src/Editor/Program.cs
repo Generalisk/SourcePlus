@@ -73,8 +73,7 @@ static class Program
         // Application closing - unload everything
 
         // Unload & close application window
-        if (ActivePopup != null)
-            ActivePopup.Dispose();
+        ActivePopup?.Dispose();
 
         Header.Shutdown();
 
@@ -106,8 +105,7 @@ static class Program
         }
 
         // Update active popup (if applicable)
-        if (ActivePopup != null)
-            ActivePopup.UpdateInternal();
+        ActivePopup?.UpdateInternal();
 
         // Save window state
         var io = GetIO();
@@ -151,8 +149,7 @@ static class Program
             window.DrawInternal();
 
         // Draw popup (if applicable)
-        if (ActivePopup != null)
-            ActivePopup.DrawInternal();
+        ActivePopup?.DrawInternal();
 
         // Finish drawing
         rlImGui.End();

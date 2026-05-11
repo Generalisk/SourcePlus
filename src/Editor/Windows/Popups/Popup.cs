@@ -21,12 +21,7 @@ internal abstract class Popup : IDisposable
 
     public Popup()
     {
-        if (ActivePopup != null)
-            /*LogError("Cannot open popup. A popup is already active.");
-            Dispose();
-            return;*/
-            ActivePopup.Dispose();
-
+        ActivePopup?.Dispose();
         ActivePopup = this;
 
         Init();
@@ -39,8 +34,7 @@ internal abstract class Popup : IDisposable
     {
         Shutdown();
 
-        if (ActivePopup != null)
-            ActivePopup = null;
+        ActivePopup = null;
     }
 
     internal virtual void UpdateInternal()
